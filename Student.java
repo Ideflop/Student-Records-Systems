@@ -3,17 +3,19 @@ public class Student extends Person {
     private int idNumber;
     private double qca;
     private String collegeLevel;
-    AcademicInformationStudents acadamicInfo;
+    private String program;
+    AcademicInformationStudent acadamicInfo;
     public Student() {
         super(); 
         this.idNumber = 0;
         this.qca = 0.0; 
         this.collegeLevel = "";
     }
-    public Student(String name, String address, String phoneNumber, String email, int idNumber,String collegeLevel) {
+    public Student(String name, String address, String phoneNumber, String email, int idNumber,String collegeLevel, String program) {
         super(name, address, phoneNumber, email);
         this.idNumber = idNumber;
         this.collegeLevel = collegeLevel;
+        this.program = program;
         addStudentToCsv();
     }
     public void setName(String collegeLevel) {
@@ -37,8 +39,15 @@ public class Student extends Person {
     public void setcollegeLevel(String collegeLevel) {
         this.collegeLevel = collegeLevel;
     }
+    public String getProgram() {
+        return program;
+    }
+    public void setProgram(String program) {
+        this.program = program;
+    }
     public void addStudentToCsv(){
-        acadamicInfo = new AcademicInformationStudents(getName(),idNumber,collegeLevel,getPhoneNumber(),getEmail(),getAddress());
+        //acadamicInfo = new AcademicInformationStudent(getName(),idNumber,collegeLevel,getPhoneNumber(),getEmail(),getAddress());
+        acadamicInfo = new AcademicInformationStudent(this);
     }
     @Override
     public String toString() {
