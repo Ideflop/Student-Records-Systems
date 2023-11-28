@@ -27,6 +27,12 @@ public class AcademicInformationStudent extends AcademicInformation {
 
     @Override
     public void getFromCsvFile(int idNumber) {
-        // TODO : to be implemented
+        if (CSVFileManager.checkIfLineExistsInCSVFile(FILE, Integer.toString(idNumber))) {
+        String studentInfo = CSVFileManager.getLineFromCSVFile(FILE, idNumber);
+        System.out.println("Student Information:\n" + studentInfo);
+    } else {
+        System.out.println("Student with ID Number " + idNumber + " doesn't exist.");
+    }
+}
     }
 }
