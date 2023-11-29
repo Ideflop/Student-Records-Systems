@@ -10,6 +10,10 @@ public abstract class AcademicInformation {
     private int idNumber;
     private String collegeLevel;
 
+    public AcademicInformation(int idNumber) {
+        this.idNumber = idNumber;
+    }
+
     public AcademicInformation(String name, int idNumber, String collegeLevel, String phoneNumber, String email, String address) {
         this.name = name;
         this.idNumber = idNumber;
@@ -20,21 +24,21 @@ public abstract class AcademicInformation {
     }
 
     public abstract void addToCsvFile();
-    public abstract void getFromCsvFile(int idNumber);
+    public abstract String[] getFromCsvFile(int idNumber);
 
     public void setName(String name) { this.name = name; }
     public void setAddress(String address) { this.address = address; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public void setEmail(String email) { this.email = email; }
     public void setIdNumber(int idNumber) { this.idNumber = idNumber; }
-    public void setcollegeLevel(String collegeLevel) { this.collegeLevel = collegeLevel; }
+    public void setCollegeLevel(String collegeLevel) { this.collegeLevel = collegeLevel; }
 
     public String getName() { return this.name; }
     public String getAddress() { return this.address; }
     public String getPhoneNumber() { return this.phoneNumber; }
     public String getEmail() { return this.email; }
     public int getIdNumber() { return this.idNumber; }
-    public String getcollegeLevel() { return this.collegeLevel; }
+    public String getCollegeLevel() { return this.collegeLevel; }
 
 }
 
