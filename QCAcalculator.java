@@ -16,7 +16,7 @@ public class QCAcalculator {
     }
 
 
-    public double qcaS( int moduleNum ) {
+    public double qcaScore( int moduleNum ) {
 
         int i = 0; 
         while (i < moduleNum) {
