@@ -1,12 +1,13 @@
 
 public class Student extends Person {
+    private static final String FILE = "student.csv";
     private int idNumber;//The unique student id number
     private double qcaSem1;//  students QCA
     private double qcaSem2;//  students QCA
     private double qcaYear;//  students QCA
     private String collegeLevel;//The college level of the student.
     private String program;//The program of the student.
-    AcademicInformationStudents acadamicInfo;//Reference to `AcademicInformationStudents` for academic-related information.
+    AcademicInformationStudent acadamicInfo;//Reference to `AcademicInformationStudents` for academic-related information.
     /**
      * Default constructor, initializes a student with default values and adds the student to the CSV file.
      */
@@ -14,6 +15,10 @@ public class Student extends Person {
         super(); 
         this.idNumber = 0;
         this.collegeLevel = "";
+    }
+
+    public Student(int idNumber) {
+        this.idNumber = idNumber;
     }
     /**
      * Parameterized constructor, initializes a student with specified values and adds the student to the CSV file.
@@ -32,6 +37,7 @@ public class Student extends Person {
         this.collegeLevel = collegeLevel;
         this.program = program;
         addStudentToCsv();
+    }
    
      /**
      * Retrieves the ID number of the student.
@@ -125,12 +131,42 @@ public class Student extends Person {
      * Adds the student's information to the CSV file.
      */
     public void addStudentToCsv(){
-        //acadamicInfo = new AcademicInformationStudent(getName(),idNumber,collegeLevel,getPhoneNumber(),getEmail(),getAddress());
         acadamicInfo = new AcademicInformationStudent(this);
+        this.acadamicInfo.addToCsvFile();
     }
+
+    public void getStudentFromCSV() {
+        this.acadamicInfo = new AcademicInformationStudent(this.idNumber, this);
+        String[] line = this.acadamicInfo.getFromCsvFile(this.idNumber);
+        if (line != null) {
+            this.setIdNumber(Integer.parseInt(line[0]));
+            this.setName(line[1]);
+            this.collegeLevel = line[2];
+            this.setPhoneNumber(line[3]);
+            this.setEmail(line[4]);
+            this.setAddress(line[5]);
+            this.program = line[6];
+        }
+    }
+
+    public static boolean checkStudentExists(int idNumber){
+        return AcademicInformationStudent.checkIfStudentExistsInCSVFile(idNumber);
+    }
+
+    public static int removeStudentFromCsv(int idNumber){
+        if (checkStudentExists(idNumber)){
+            return CSVFileManager.removeLineFromCSVFile(FILE, idNumber);
+        }
+        return -1;
+    }
+
+
     @Override
     public String toString() {
-        return super.toString() + String.format("%n ID Number: %d%n  Progam: %s QCAsem1: %.2f %n QCAsem2: %.2f %n QCAyear: %.2f %n", idNumber, program, qcaSem1,qcaSem2, qcaYesr);
+        if (idNumber == 0 || collegeLevel == null || program == null) {
+            getStudentFromCSV();
+        }
+        return super.toString() + String.format("%n ID Number: %d%n  Progam: %s QCAsem1: %.2f %n QCAsem2: %.2f %n QCAyear: %.2f %n", idNumber, program, qcaSem1,qcaSem2, qcaYear);
     }
 }
 

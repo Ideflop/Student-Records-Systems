@@ -6,7 +6,7 @@
  */
 public class AcademicInformationStudent extends AcademicInformation {
 
-    private final String FILE = "student.csv";
+    private static final String FILE = "student.csv";
     private String program;
 
     public AcademicInformationStudent(Student student) {
@@ -14,25 +14,41 @@ public class AcademicInformationStudent extends AcademicInformation {
         this.program = student.getProgram();
     }
 
+    public AcademicInformationStudent(int idNumber, Student student) {
+        super(idNumber);
+    }
+
+
     @Override
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getIdNumber()) ) {
             StringBuilder sb = new StringBuilder();
-            sb.append(this.getIdNumber()+ "," + this.getName()+ "," + this.getcollegeLevel()+ "," + this.getPhoneNumber()+ "," + this.getEmail()+ "," + this.getAddress()+ "," + this.program + "\n");
-            CSVFileManager.addLineToCSVFile(FILE, sb.toString()); 
+            sb.append(this.getIdNumber()).append(",").append(this.getName()).append(",").append(this.getCollegeLevel()).append(",").append(this.getPhoneNumber()).append(",").append(this.getEmail()).append(",").append(this.getAddress()).append(",").append(this.program);
+            int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString()); 
+            if (result == 0) {
+                System.out.println("Student with ID Number " + this.getIdNumber() + " successfully added.");
+            } else {
+                System.out.println("Student with ID Number " + this.getIdNumber() + " was not added.");
+            }
         } else {
             System.out.println("Student with ID Number " + this.getIdNumber()+ " already exists.");
         }
     }
 
     @Override
-    public void getFromCsvFile(int idNumber) {
-        if (CSVFileManager.checkIfLineExistsInCSVFile(FILE, Integer.toString(idNumber))) {
+    public String[] getFromCsvFile(int idNumber) {
         String studentInfo = CSVFileManager.getLineFromCSVFile(FILE, idNumber);
-        System.out.println("Student Information:\n" + studentInfo);
-    } else {
-        System.out.println("Student with ID Number " + idNumber + " doesn't exist.");
+        if (studentInfo == null) {
+            System.out.println("Student with ID Number " + idNumber + " does not exist.");
+            return new String[0];
+        } else {
+            String[] studentInfoArray = studentInfo.split(",");
+            return studentInfoArray;
+        }
     }
-}
+
+
+    public static boolean checkIfStudentExistsInCSVFile(int idNumber) {
+        return CSVFileManager.checkIfLineExistsInCSVFile(FILE, idNumber);
     }
 }
