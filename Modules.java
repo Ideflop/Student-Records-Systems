@@ -70,7 +70,10 @@ public class Modules {
             this.code = line2[0];
             this.name = line2[1];
             this.teacher = Integer.parseInt(line2[2]);
-            // this.students = line2[2];
+            this.students = new int[line2.length - 3];
+            for (int i = 3; i < line2.length; i++) {
+                this.students[i - 3] = Integer.parseInt(line2[i]);
+            }
         }
     }
 
