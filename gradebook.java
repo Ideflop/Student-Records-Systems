@@ -1,37 +1,40 @@
 public class gradebook {
 
-    private final String[] letterGrade = {"NG", "F", "D2", "D1", "C3", "C2", "C1", "B3", "B2", "B1", "A2", "A1"};
+    // letterGrade = {"NG", "F", "D2", "D1", "C3", "C2", "C1", "B3", "B2", "B1", "A2", "A1"};
     private double[] testscores;
 
-
-    //Way to get student name
-
-    //test results
-    public TestResult() {
+    public gradebook() {
         testscores = new double[3];
     }
 
-    //test resultss
-    public TestResult(int tests) {
-        testscores = new double[tests];
+    public gradebook(int numTests) {
+        testscores = new double[numTests];
+    }
+
+    public void setScore(int i, double value) {
+        scores[i] = value;
+    }
+
+    public double getScore(int i) {
+        return scores[i];
     }
 
     
     public double getTotal() {
         double result = 0;
-        for (double score : scores) {
+        for (double score : testscores) {
             result += score;
         }
         return result;
     }
 
     //Calculate average test score
-    public doubleouble calculateavgscore( double[] testscores ) {
+    public double calculateavgscore( double[] testscores ) {
         double testTotal = 0;
         double avgTestScore = 0;
 
         for (int i = 0; i < testscores.lenght; i++) {
-            testTotal = testTotal + testscores[i];
+            testTotal =+ testscores[i];
         }
 
         // alternative
@@ -51,46 +54,57 @@ public class gradebook {
         
         if(score >= 80)
         {
+            result = "A1";
             System.out.print("A1");
         }
         else if( score >= 72 && score < 80)
         {
-           System.out.print("A2");
+           result = "A2";
+            System.out.print("A2");
         } 
         else if( score>=64 && score<72)
         {
+            result = "B1";
             System.out.print("B1");
         }
         else if( score>=60 && score < 64)
         {
+            result = "B2";
             System.out.print("B2");
         }
         else if( score>=56 && score < 60)
         {
+            result = "B3";
             System.out.print("B3");
         }
          else if( score>=52 && score < 56)
         {
+            result = "C1";
             System.out.print("C1");
         }
          else if( score>=48 && score < 52)
         {
+            result = "C2";
             System.out.print("C2");
         }
          else if( score>=40 && score < 48)
         {
+            result = "C3";
             System.out.print("C3");
         }
          else if( score>=35 && score < 40)
         {
+            result = "D1";
             System.out.print("D1");
         }
          else if( score>=30 && score < 35)
         {
+            result = "D2";
             System.out.print("D2");
         }
          else if( score>=1 && score < 30)
         {
+            result = "F";
             System.out.print("F");
         }
         else
@@ -111,8 +125,5 @@ public class gradebook {
 
         return result.toString();
     }
-
-
-
 
 }
