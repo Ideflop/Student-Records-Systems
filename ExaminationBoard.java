@@ -13,7 +13,7 @@ public class ExaminationBoard
     // check with Assessment class to get grade schema
     // check each student QCA against schema for that module
     // return pass or fail
-    public double getQca(Student student) {return student.getQca();}
+    public double getQca(Student student) {return student.getQcaYear();}
     public boolean passFail() {
         boolean pass = false;
         return pass;
