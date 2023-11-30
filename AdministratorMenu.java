@@ -10,19 +10,19 @@ public class AdministratorMenu {
     private static final int ADD_TEACHER_INT = 2;
     private static final int ADD_ADMINISTRATOR_INT = 3;
     private static final int ADD_MODULE_INT = 4;
-    private static final int ADD_PROGRAM_INT = 5;
+    private static final int ADD_PROGRAMME_INT = 5;
     private static final int ADD_DEPARTMENT_INT = 6;
     private static final int REMOVE_STUDENT_INT = 7;
     private static final int REMOVE_TEACHER_INT = 8;
     private static final int REMOVE_ADMINISTRATOR_INT = 9;
     private static final int REMOVE_MODULE_INT = 10;
-    private static final int REMOVE_PROGRAM_INT = 11;
+    private static final int REMOVE_PROGRAMME_INT = 11;
     private static final int REMOVE_DEPARTMENT_INT = 12;
     private static final int CHECK_STUDENT_INT = 13;
     private static final int CHECK_TEACHER_INT = 14;
     private static final int CHECK_ADMINISTRATOR_INT = 15;
     private static final int CHECK_MODULE_INT = 16;
-    private static final int CHECK_PROGRAM_INT = 17;
+    private static final int CHECK_PROGRAMME_INT = 17;
     private static final int CHECK_DEPARTMENT_INT = 18;
     private static final int EXIT_INT = 19;
 
@@ -31,19 +31,19 @@ public class AdministratorMenu {
     private static final String ADD_TEACHER_STRING = " : Add a Teacher";
     private static final String ADD_ADMINISTRATOR_STRING = " : Add an Administrator";
     private static final String ADD_MODULE_STRING = " : Add a Module";
-    private static final String ADD_PROGRAM_STRING = " : Add a Program";
+    private static final String ADD_PROGRAMME_STRING = " : Add a Program";
     private static final String ADD_DEPARTMENT_STRING = " : Add a Department";
     private static final String REMOVE_STUDENT_STRING = " : Remove a Student";
     private static final String REMOVE_TEACHER_STRING = " : Remove a Teacher";
     private static final String REMOVE_ADMINISTRATOR_STRING = " : Remove an Administrator";
     private static final String REMOVE_MODULE_STRING = " : Remove a Module";
-    private static final String REMOVE_PROGRAM_STRING = " : Remove a Program";
+    private static final String REMOVE_PROGRAMME_STRING = " : Remove a Program";
     private static final String REMOVE_DEPARTMENT_STRING = " : Remove a Department";
     private static final String CHECK_STUDENT_STRING = " : Check a Student";
     private static final String CHECK_TEACHER_STRING = " : Check a Teacher";
     private static final String CHECK_ADMINISTRATOR_STRING = " : Check an Administrator";
     private static final String CHECK_MODULE_STRING = " : Check a Module";
-    private static final String CHECK_PROGRAM_STRING = " : Check a Program";
+    private static final String CHECK_PROGRAMME_STRING = " : Check a Program";
     private static final String CHECK_DEPARTMENT_STRING = " : Check a Department";
     private static final String EXIT_STRING = " : Exit to Main Menu";
 
@@ -96,19 +96,19 @@ public class AdministratorMenu {
             .append(ADD_TEACHER_INT).append(ADD_TEACHER_STRING).append("\n")
             .append(ADD_ADMINISTRATOR_INT).append(ADD_ADMINISTRATOR_STRING).append("\n")
             .append(ADD_MODULE_INT).append(ADD_MODULE_STRING).append("\n")
-            .append(ADD_PROGRAM_INT).append(ADD_PROGRAM_STRING).append("\n")
+            .append(ADD_PROGRAMME_INT).append(ADD_PROGRAMME_STRING).append("\n")
             .append(ADD_DEPARTMENT_INT).append(ADD_DEPARTMENT_STRING).append("\n")
             .append(REMOVE_STUDENT_INT).append(REMOVE_STUDENT_STRING).append("\n")
             .append(REMOVE_TEACHER_INT).append(REMOVE_TEACHER_STRING).append("\n")
             .append(REMOVE_ADMINISTRATOR_INT).append(REMOVE_ADMINISTRATOR_STRING).append("\n")
             .append(REMOVE_MODULE_INT).append(REMOVE_MODULE_STRING).append("\n")
-            .append(REMOVE_PROGRAM_INT).append(REMOVE_PROGRAM_STRING).append("\n")
+            .append(REMOVE_PROGRAMME_INT).append(REMOVE_PROGRAMME_STRING).append("\n")
             .append(REMOVE_DEPARTMENT_INT).append(REMOVE_DEPARTMENT_STRING).append("\n")
             .append(CHECK_STUDENT_INT).append(CHECK_STUDENT_STRING).append("\n")
             .append(CHECK_TEACHER_INT).append(CHECK_TEACHER_STRING).append("\n")
             .append(CHECK_ADMINISTRATOR_INT).append(CHECK_ADMINISTRATOR_STRING).append("\n")
             .append(CHECK_MODULE_INT).append(CHECK_MODULE_STRING).append("\n")
-            .append(CHECK_PROGRAM_INT).append(CHECK_PROGRAM_STRING).append("\n")
+            .append(CHECK_PROGRAMME_INT).append(CHECK_PROGRAMME_STRING).append("\n")
             .append(CHECK_DEPARTMENT_INT).append(CHECK_DEPARTMENT_STRING).append("\n")
             .append(EXIT_INT).append(EXIT_STRING).append("\n")
             .append(">>>");
@@ -134,11 +134,11 @@ public class AdministratorMenu {
             case ADD_MODULE_INT:
                 addModule();
                 break;
-            case ADD_PROGRAM_INT:
-                //addProgram();
+            case ADD_PROGRAMME_INT:
+                addProgramme();
                 break;
             case ADD_DEPARTMENT_INT:
-                //addDepartment();
+                addDepartment();
                 break;
             case REMOVE_STUDENT_INT:
                 removeStudent();
@@ -152,11 +152,11 @@ public class AdministratorMenu {
             case REMOVE_MODULE_INT:
                 removeModule();
                 break;
-            case REMOVE_PROGRAM_INT:
-                //removeProgram();
+            case REMOVE_PROGRAMME_INT:
+                removeProgramme();
                 break;
             case REMOVE_DEPARTMENT_INT:
-                //removeDepartment();
+                removeDepartment();
                 break;
             case CHECK_STUDENT_INT:
                 checkStudent();
@@ -170,11 +170,11 @@ public class AdministratorMenu {
             case CHECK_MODULE_INT:
                 checkModule();
                 break;
-            case CHECK_PROGRAM_INT:
-                //checkProgram();
+            case CHECK_PROGRAMME_INT:
+                checkProgramme();
                 break;
             case CHECK_DEPARTMENT_INT:
-                //checkDepartment();
+                checkDepartment();
                 break;
             case EXIT_INT:
                 System.out.println("Exiting to Main Menu");
@@ -323,6 +323,123 @@ public class AdministratorMenu {
     }
 
     /**
+     * The addProgramme method is used to add a program
+     */
+    public void addProgramme() {
+        System.out.println("Input Program name: ");
+        String name = InputUtils.scanString(scanner);
+        if (Programme.checkIfProgrammeExists(name)) {
+            System.out.println("Program already exists");
+            return;
+        }
+
+        System.out.println("Input Program duration: ");
+        String duration = InputUtils.scanString(scanner);
+        System.out.println("Input Program level (undergraduate, masters, phd): ");
+        String level = InputUtils.scanString(scanner);
+        System.out.println("Input Program type: ");
+        String type = InputUtils.scanString(scanner);
+
+        Programme program = new Programme(name, duration, level, type);
+        
+        System.out.println("Do you want to add modules to the program? (y/n)");
+        String addModules = InputUtils.scanString(scanner);
+        if(addModules.equals("y")) {
+            while(true) {
+                System.out.println("Input Module code: ");
+                String code = InputUtils.scanString(scanner);
+                if(Modules.checkIfModuleExists(code)) {
+                    program.addModule(new Modules(code));
+                } else {
+                    System.out.println("Module does not exist");
+                }
+                System.out.println("Add another module? (y/n)");
+                String addAnother = InputUtils.scanString(scanner);
+                if(addAnother.equals("n")) {
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Do you want to add students to the program? (y/n)");
+        String addStudents = InputUtils.scanString(scanner);
+        if(addStudents.equals("y")) {
+            while(true) {
+                System.out.println("Input Student id number: ");
+                int id = InputUtils.scanInt(scanner);
+                if(Student.checkStudentExists(id)) {
+                    program.addStudent(new Student(id));
+                } else {
+                    System.out.println("Student does not exist");
+                }
+                System.out.println("Add another student? (y/n)");
+                String addAnother = InputUtils.scanString(scanner);
+                if(addAnother.equals("n")) {
+                    break;
+                }
+            }
+        }
+
+        program.addToCsvFile();
+    }
+
+    /**
+     * The addDepartment method is used to add a department
+     */
+    public void addDepartment() {
+        System.out.println("Input Department name: ");
+        String name = InputUtils.scanString(scanner);
+        System.out.println("Input Department id number: ");
+        int id = InputUtils.scanInt(scanner);
+        if (Department.checkIfDepartmentExists(id)) {
+            System.out.println("Department already exists");
+            return;
+        }
+
+        Department department = new Department(name, id);
+
+        System.out.println("Do you want to add programs to the department? (y/n)");
+        String addPrograms = InputUtils.scanString(scanner);
+        if(addPrograms.equals("y")) {
+            while(true) {
+                System.out.println("Input Program name: ");
+                String programName = InputUtils.scanString(scanner);
+                if(Programme.checkIfProgrammeExists(programName)) {
+                    department.addProgramme(new Programme(programName));
+                } else {
+                    System.out.println("Program does not exist");
+                }
+                System.out.println("Add another program? (y/n)");
+                String addAnother = InputUtils.scanString(scanner);
+                if(addAnother.equals("n")) {
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Do you want to add modules to the department? (y/n)");
+        String addModules = InputUtils.scanString(scanner);
+        if(addModules.equals("y")) {
+            while(true) {
+                System.out.println("Input Module code: ");
+                String code = InputUtils.scanString(scanner);
+                if(Modules.checkIfModuleExists(code)) {
+                    department.addModule(new Modules(code));
+                } else {
+                    System.out.println("Module does not exist");
+                }
+                System.out.println("Add another module? (y/n)");
+                String addAnother = InputUtils.scanString(scanner);
+                if(addAnother.equals("n")) {
+                    break;
+                }
+            }
+        }
+
+        department.addToCsvFile();
+    }
+
+    /**
      * The removeStudent method is used to remove a student
      */
     public void removeStudent() {
@@ -391,6 +508,40 @@ public class AdministratorMenu {
     }
 
     /**
+     * The removeProgramme method is used to remove a program
+     */
+    public void removeProgramme() {
+        System.out.println("Input Program name: ");
+        String name = InputUtils.scanString(scanner);
+        if(Programme.checkIfProgrammeExists(name)) {
+            if (Programme.removeProgrammeFromCsv(name) == 0) {
+                System.out.println("Program removed");
+            } else {
+                System.out.println("Program could not be removed");
+            }
+        } else {
+            System.out.println("Program does not exist");
+        }
+    }
+
+    /**
+     * The removeDepartment method is used to remove a department
+     */
+    public void removeDepartment() {
+        System.out.println("Input Department id: ");
+        int id = InputUtils.scanInt(scanner);
+        if(Department.checkIfDepartmentExists(id)) {
+            if (Department.removeDepartmentFromCsv(id) == 0) {
+                System.out.println("Department removed");
+            } else {
+                System.out.println("Department could not be removed");
+            }
+        } else {
+            System.out.println("Department does not exist");
+        }
+    }
+
+    /**
      * The checkStudent method is used to get the information of a student
      */
     public void checkStudent() {
@@ -445,4 +596,33 @@ public class AdministratorMenu {
             System.out.println("Module does not exist");
         }
     }
+
+    /**
+     * The checkProgramme method is used to get the information of a program
+     */
+    public void checkProgramme() {
+        System.out.println("Input Program name: ");
+        String name = InputUtils.scanString(scanner);
+        if(Programme.checkIfProgrammeExists(name)) {
+            Programme programme = new Programme(name);
+            System.out.println(programme);
+        } else {
+            System.out.println("Program does not exist");
+        }
+    }
+
+    /**
+     * The checkDepartment method is used to get the information of a department
+     */
+    public void checkDepartment() {
+        System.out.println("Input Department id: ");
+        int id = InputUtils.scanInt(scanner);
+        if(Department.checkIfDepartmentExists(id)) {
+            Department department = new Department(id);
+            System.out.println(department);
+        } else {
+            System.out.println("Department does not exist");
+        }
+    }
+
 }
