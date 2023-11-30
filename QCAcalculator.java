@@ -1,26 +1,32 @@
 import java.util.Scanner;
+
 public class QCAcalculator {
 
-    private int moduleNum = 0;
-    private double qcaScore = 0.00;
-    private double tempQca = 0.0;
-    private int i = 0; 
+    int moduleNum = 0;
+    double qcaScore = 0.00;
+    double tempQca = 0.0;
+
     private Scanner scanner;
-
-    // get calculateavgscore for each module
-
-    // create tempQca
 
     public QCAcalculator() {
         this.scanner = new Scanner(System.in);
     }
 
+    public double getQcaScore() {
+        return qcaScore;
+    }
 
-    public double qcaS( int moduleNum ) {
+    public void setQcaScore(double qcaScore) {
+        this.qcaScore = qcaScore;
+    }
 
-        int i = 0; 
-        while (i < moduleNum) {
-            String grade = InputUtils.scanString(scanner);
+    // get calculateavgscore for each module?
+
+
+    public double calculateQcaScore( int moduleNum ) {
+
+        for (int i = 0; i < moduleNum; i++) {
+            String grade = scanner.next();
 
 
             if (grade.equals("A1") || grade.equals("a1")) {
@@ -78,7 +84,22 @@ public class QCAcalculator {
         }
 
         qcaScore = tempQca / moduleNum;
+        System.out.println(qcaScore);
         return qcaScore;
     }
 
+
+
+
 }
+
+
+
+// should i use this
+/* switch (grade.toUpperCase()) {
+   case "A1":
+   tempQca += 4.0;
+   break;
+   case "A2":
+   tempQca += 3.6;
+   break; */

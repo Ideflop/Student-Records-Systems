@@ -1,22 +1,22 @@
-public class gradebook {
+public class Gradebook {
 
     // letterGrade = {"NG", "F", "D2", "D1", "C3", "C2", "C1", "B3", "B2", "B1", "A2", "A1"};
     private double[] testscores;
 
-    public gradebook() {
+    public Gradebook() {
         testscores = new double[3];
     }
 
-    public gradebook(int numTests) {
+    public Gradebook(int numTests) {
         testscores = new double[numTests];
     }
 
     public void setScore(int i, double value) {
-        scores[i] = value;
+        testscores[i] = value;
     }
 
     public double getScore(int i) {
-        return scores[i];
+        return testscores[i];
     }
 
     
@@ -33,7 +33,7 @@ public class gradebook {
         double testTotal = 0;
         double avgTestScore = 0;
 
-        for (int i = 0; i < testscores.lenght; i++) {
+        for (int i = 0; i < testscores.length; i++) {
             testTotal =+ testscores[i];
         }
 
@@ -42,13 +42,13 @@ public class gradebook {
         //    testTotal += score;
         //}
 
-        avgTestScore = testTotal / testscores.lenght ; 
+        avgTestScore = testTotal / testscores.length; 
         return avgTestScore;
 
     }
 
     public String getGrade() {
-        double score = calculateavgscore();
+        double score = calculateavgscore(testscores);
         String result = "NG";
 
         
@@ -112,6 +112,7 @@ public class gradebook {
             System.out.print("NG");
         }
 
+        return result;
     }
 
 
