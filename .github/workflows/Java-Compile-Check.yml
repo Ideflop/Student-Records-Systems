@@ -1,0 +1,27 @@
+name: Java Compile Check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Compile Java Code
+      run: javac *.java
+
+    - name: Check Compilation Status
+      run: |
+        if [ $? -ne 0 ]; then
+          echo "Java code compilation failed."
+          exit 1
+        fi
