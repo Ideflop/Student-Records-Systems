@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class ExaminationBoard
 {
     // what data types do i need?
-    Programme programme;
-    double passingQca = 1.2; // stand in variable
-    ArrayList<Student> students;
+    private Programme programme;
+    private double passingQca = 1.2; // stand in variable
+    private ArrayList<Student> students;
     public ExaminationBoard(Programme programme, double passingQca) {
         this.programme = programme;
         this.passingQca = passingQca;
@@ -56,7 +56,23 @@ public class ExaminationBoard
         }
         return output;
     }
-    
+    // Get modules, display all results and check which ones failed
+    public String checkModuleResults(Student s) {
+        String output = "";
+        StudentResults studentResults = new StudentResults(s);
+        ArrayList<Modules> mods = programme.getModules();
+        for (Modules m : mods) {
+            if (studentResults.getResult(m.getCode()) < 1.2f){ //m.passingGrade
+                // This module was failed by this student
+                // temporary return string
+                output += String.format("%s: %.2f - FAIL\n");
+            } else {
+                //this module was passed by this student
+                output += String.format("%s: %.2f - PASS\n");
+            }
+        }
+        return output;
+    }
     @Override
     public String toString(){ // display results for entire programme
         String output = String.format("%s", programme.toString());
