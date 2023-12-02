@@ -14,6 +14,7 @@ public class Programme
         this.name = name;
         this.students = new ArrayList<Student>();
         this.modules = new ArrayList<Modules>();
+        getFromCsvFile(this.getName());
     }
 
     public Programme(String name, String duration, String level, String type, double passingQca) {
@@ -43,6 +44,7 @@ public class Programme
         }
     }
     public ArrayList<Student> getStudentsEnrolled() {return this.students;}
+    public ArrayList<Modules> getModules() {return this.modules;}
     public void addModule(Modules module) {
         if (!this.modules.contains(module)) {
             this.modules.add(module);

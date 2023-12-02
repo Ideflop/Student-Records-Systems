@@ -13,9 +13,9 @@ public class ExaminationBoard
     private Programme programme;
     private double passingQca = 1.2; // stand in variable
     private ArrayList<Student> students;
-    public ExaminationBoard(Programme programme, double passingQca) {
+    public ExaminationBoard(Programme programme) {
         this.programme = programme;
-        this.passingQca = passingQca;
+        this.passingQca = programme.getPassingQca();
         this.students = getStudents();
     }
     public ArrayList<Student> getStudents() {return programme.getStudentsEnrolled();}

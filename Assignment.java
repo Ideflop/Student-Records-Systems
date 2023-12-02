@@ -6,9 +6,10 @@ public class Assignment{
     private static final String FILE = "assignment.csv";
     private String name;
     private String code;
+    private String moduleCode;
     private int outOf;
     private int[] students;
-    private int[] studentsMarks;
+    private double[] studentsMarks;
 
     public Assignment(String code) {
         this.code = code;
@@ -17,7 +18,7 @@ public class Assignment{
     /**
      * Constructor for objects of class Assignment
      */
-    public Assignment(String name, String code, int outOf, int[] students, int[] studentsMarks) {
+    public Assignment(String name, String code, int outOf, int[] students, double[] studentsMarks) {
         this.name = name;
         this.code = code;
         this.outOf = outOf;
@@ -27,15 +28,17 @@ public class Assignment{
 
     public String getName() { return this.name; }
     public String getCode() { return this.code; }
+    public String getModuleCode() { return this.moduleCode; }
     public int getOutOf() { return this.outOf; }
     public int[] getStudents() { return this.students; }
-    public int[] getStudentsMarks() { return this.studentsMarks; }
+    public double[] getStudentsMarks() { return this.studentsMarks; }
 
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
+    public void setModuleCode(String moduleCode) { this.moduleCode = moduleCode; }
     public void setOutOf(int outOf) { this.outOf = outOf; }
     public void setStudents(int[] students) { this.students = students; }
-    public void setStudentsMarks(int[] studentsMarks) { this.studentsMarks = studentsMarks; }
+    public void setStudentsMarks(double[] studentsMarks) { this.studentsMarks = studentsMarks; }
 
     /**
      * Adds a new Assignment to the csv file.
@@ -43,7 +46,7 @@ public class Assignment{
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getCode()) ) {
             StringBuilder sb = new StringBuilder();
-            sb.append(this.getCode()).append(",").append(this.getName()).append(",").append(this.getOutOf());
+            sb.append(this.getCode()).append(",").append(this.getName()).append(",").append(this.getModuleCode()).append(",").append(this.getOutOf());
             for (int i = 0; i < this.students.length; i++) {
                 sb.append(",").append(this.students[i]).append(",").append(this.studentsMarks[i]);
                 if (i != this.students.length - 1) {
@@ -74,15 +77,16 @@ public class Assignment{
             String[] line2 = line.split(",");
             this.code = line2[0];
             this.name = line2[1];
-            this.outOf = Integer.parseInt(line2[2]);
+            this.moduleCode = line2[2];
+            this.outOf = Integer.parseInt(line2[3]);
             ArrayList<Integer> students = new ArrayList<>();
             ArrayList<Integer> studentsMarks = new ArrayList<>();
-            for (int i = 3; i < line2.length; i=i+2) {
+            for (int i = 4; i < line2.length; i=i+2) {
                 students.add(Integer.parseInt(line2[i]));
                 studentsMarks.add(Integer.parseInt(line2[i+1]));
             }
             this.students = students.stream().mapToInt(i -> i).toArray();
-            this.studentsMarks = studentsMarks.stream().mapToInt(i -> i).toArray();
+            this.studentsMarks = studentsMarks.stream().mapToDouble(i -> i).toArray();
         }
     }
 
@@ -121,7 +125,7 @@ public class Assignment{
     public void addMarkToStudent(int studentId, int mark) {
         getFromCsvFile(code);
         int[] newStudents = new int[students.length + 1];
-        int[] newStudentsMarks = new int[studentsMarks.length + 1];
+        double[] newStudentsMarks = new double[studentsMarks.length + 1];
         for (int i = 0; i < students.length; i++) {
             newStudents[i] = students[i];
             newStudentsMarks[i] = studentsMarks[i];

@@ -9,6 +9,7 @@ public class StudentRecordSystem {
     private static Scanner scanner = InputUtils.scanOpen();
     private TeacherMenu teacherMenu; 
     private AdministratorMenu administratorMenu;
+    private StudentMenu studentMenu;
 
     private static final int STUDENT_INT = 1;
     private static final int TEACHER_INT = 2;
@@ -98,7 +99,7 @@ public class StudentRecordSystem {
     private void InputProcessing(int userInput) {
         switch(userInput) {
             case STUDENT_INT:
-                //TODO
+                studentLogIn();
                 break;
             case TEACHER_INT:
                 teacherLogIn();
@@ -124,6 +125,30 @@ public class StudentRecordSystem {
                 break;
         }
 
+    }
+
+    /**
+     * This method is used to log in as a student
+     */
+    private void studentLogIn() {
+        System.out.println("Input your username: ");
+        String username = InputUtils.scanString(scanner);
+        System.out.println("Input your id number: ");
+        int id = InputUtils.scanInt(scanner);
+        
+        if (Student.checkStudentExists(id)) {
+            Student student = new Student(id);
+            student.getStudentFromCSV();
+            if (student.getName().equals(username)) {
+                System.out.println("Welcome " + student.getName());
+                this.studentMenu = new StudentMenu(student, scanner);
+                this.studentMenu.start();
+            } else {
+                System.out.println("Wrong username");
+            }
+        } else {
+            System.out.println("Student with ID Number " + id + " does not exist.");
+        }
     }
 
     /**

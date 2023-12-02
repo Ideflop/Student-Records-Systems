@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Gradebook {
     // letterGrade = {"NG", "F", "D2", "D1", "C3", "C2", "C1", "B3", "B2", "B1", "A2", "A1"};
     private double[] testscores;
@@ -65,6 +66,31 @@ public class Gradebook {
         } else {
             return "NG";
         }
+    }
+
+    public String[] getLetterGrades(Student student) {
+        Programme programme = new Programme(student.getProgram());
+        ArrayList<Modules> modules = programme.getModules();
+        ArrayList<String> letterGrades = new ArrayList<>();
+        for (Modules module : modules) {
+            ArrayList<Double> AssignmentScores = new ArrayList<>();
+            for (String assignmentName : module.getAssignmentName()) {
+                String grade  = new Assignment(assignmentName).getStudentMark(student.getIdNumber());
+                if (grade != null) {
+                    AssignmentScores.add(Double.parseDouble(grade));
+                }
+            }
+            this.testscores = new double[AssignmentScores.size()];
+            for (int i = 0; i < AssignmentScores.size(); i++) {
+                this.testscores[i] = AssignmentScores.get(i);
+            }
+            letterGrades.add(getGrade());
+        }
+        String[] result = new String[letterGrades.size()];
+        for (int i = 0; i < letterGrades.size(); i++) {
+            result[i] = letterGrades.get(i);
+        }
+        return result;
     }
 
     public String toString() {

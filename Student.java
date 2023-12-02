@@ -36,7 +36,7 @@ public class Student extends Person {
         this.idNumber = idNumber;
         this.collegeLevel = collegeLevel;
         this.program = program;
-        addStudentToCsv();
+        //addStudentToCsv();
     }
    
      /**
@@ -93,7 +93,7 @@ public class Student extends Person {
      * @return The the whole year QCA of the student.
      */
     public double getQcaYear() {
-        return qcaYear;
+        return new Department().getQcaScoreForStudent(this);
     }
     /**
      * Sets the whole year QCA of the student.
