@@ -14,7 +14,7 @@ public class StudentRecordSystem {
     private static final int TEACHER_INT = 2;
     private static final int ADMINISTRTION_INT = 3;
     private static final int CHECK_MODULE_INT = 4;
-    private static final int CHECK_PROGRAM_INT = 5;
+    private static final int CHECK_PROGRAMME_INT = 5;
     private static final int CHECK_DEPARTMENT_INT = 6;
     private static final int EXIT_INT = 7;
 
@@ -23,7 +23,7 @@ public class StudentRecordSystem {
     private static final String TEACHER_STRING = " : I am a Teacher";
     private static final String ADMINISTRTION_STRING = " : I am an Administrator";
     private static final String CHECK_MODULE_STRING = " : Check a Module";
-    private static final String CHECK_PROGRAM_STRING = " : Check a Program";
+    private static final String CHECK_PROGRAMME_STRING = " : Check a Program";
     private static final String CHECK_DEPARTMENT_STRING = " : Check a Department";
     private static final String EXIT_STRING = " : Exit";
 
@@ -74,12 +74,12 @@ public class StudentRecordSystem {
             .append(TEACHER_INT).append(TEACHER_STRING).append("\n")
             .append(ADMINISTRTION_INT).append(ADMINISTRTION_STRING).append("\n")
             .append(CHECK_MODULE_INT).append(CHECK_MODULE_STRING).append("\n")
-            .append(CHECK_PROGRAM_INT).append(CHECK_PROGRAM_STRING).append("\n")
+            .append(CHECK_PROGRAMME_INT).append(CHECK_PROGRAMME_STRING).append("\n")
             .append(CHECK_DEPARTMENT_INT).append(CHECK_DEPARTMENT_STRING).append("\n")
             .append(EXIT_INT).append(EXIT_STRING).append("\n")
             .append(">>>");
 
-        System.out.println(sb.toString());
+        System.out.print(sb);
     }
 
     /**
@@ -107,13 +107,13 @@ public class StudentRecordSystem {
                 administrationLogIn();
                 break;
             case CHECK_MODULE_INT:
-                //TODO
+                checkModule();
                 break;
-            case CHECK_PROGRAM_INT:
-                //TODO
+            case CHECK_PROGRAMME_INT:
+                checkProgramme();
                 break;
             case CHECK_DEPARTMENT_INT:
-                //TODO
+                checkDepartment();
                 break;
             case EXIT_INT:
                 System.out.println("Exit");
@@ -140,7 +140,7 @@ public class StudentRecordSystem {
             teacher.getTeacherFromCSV();
             if (teacher.getName().equals(username)) {
                 System.out.println("Welcome " + teacher.getName());
-                this.teacherMenu = new TeacherMenu(teacher);
+                this.teacherMenu = new TeacherMenu(teacher, scanner);
                 this.teacherMenu.start();
             } else {
                 System.out.println("Wrong username");
@@ -172,6 +172,48 @@ public class StudentRecordSystem {
             }
         } else {
             System.out.println("Administrator with ID Number " + id + " does not exist.");
+        }
+    }
+
+    /**
+     * The checkModule method is used to get the information of a module
+     */
+    public void checkModule() {
+        System.out.println("Input Module code: ");
+        String code = InputUtils.scanString(scanner);
+        if(Modules.checkIfModuleExists(code)) {
+            Modules module = new Modules(code);
+            System.out.println(module);
+        } else {
+            System.out.println("Module does not exist");
+        }
+    }
+
+    /**
+     * The checkProgramme method is used to get the information of a program
+     */
+    public void checkProgramme() {
+        System.out.println("Input Program name: ");
+        String name = InputUtils.scanString(scanner);
+        if(Programme.checkIfProgrammeExists(name)) {
+            Programme programme = new Programme(name);
+            System.out.println(programme);
+        } else {
+            System.out.println("Program does not exist");
+        }
+    }
+
+    /**
+     * The checkDepartment method is used to get the information of a department
+     */
+    public void checkDepartment() {
+        System.out.println("Input Department id: ");
+        int id = InputUtils.scanInt(scanner);
+        if(Department.checkIfDepartmentExists(id)) {
+            Department department = new Department(id);
+            System.out.println(department);
+        } else {
+            System.out.println("Department does not exist");
         }
     }
 

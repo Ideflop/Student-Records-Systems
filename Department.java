@@ -3,11 +3,11 @@ public class Department
 {
     private static final String FILE = "department.csv";
 
-    String name;
-    int deptID;
-    ExaminationBoard examBoard; // for each dpartment
-    ArrayList<Programme> programmes;
-    ArrayList<Modules> modules;
+    private String name;
+    private int deptID;
+    private ExaminationBoard examBoard; // for each dpartment
+    private ArrayList<Programme> programmes;
+    private ArrayList<Modules> modules;
 
     public Department(int deptID) {
         this.deptID = deptID;

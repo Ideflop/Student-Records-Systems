@@ -123,6 +123,31 @@ public class Teacher extends Person {
     }
 
     /**
+     * The removeStudentFromModule() method is used to remove a student from a module
+     * @param idNumber the id number of the student
+     */
+    public void removeStudentFromModule(int idNumber) {
+        getTeacherFromCSV();
+        if (Modules.checkIfModuleExists(this.modules)) {
+            Modules module = new Modules(this.modules);
+            module.removeStudentFromModule(idNumber);
+        }
+    }
+
+    /**
+     * The checkIfStudentExistsInModule() method is used to check if a student exists in a module
+     * @param idNumber the id number of the student
+     */
+    public boolean checkIfStudentExistsInModule(int idNumber) {
+        getTeacherFromCSV();
+        if (Modules.checkIfModuleExists(this.modules)) {
+            Modules module = new Modules(this.modules);
+            return module.checkIfStudentIsInModule(idNumber);
+        }
+        return false;
+    }
+
+    /**
      * The toString() method is used to print the information of a teacher
      */
     @Override

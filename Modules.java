@@ -77,6 +77,42 @@ public class Modules {
         }
     }
 
+    /**
+     * This method is used to remove a student from a module
+     * @param studentId the id of the student
+     */
+    public void removeStudentFromModule(int studentId) {
+        boolean found = checkIfStudentIsInModule(studentId);
+        if (found) {
+            int[] newStudents = new int[this.students.length - 1];
+            int j = 0;
+            for (int i = 0; i < this.students.length; i++) {
+                if (this.students[i] != studentId) {
+                    newStudents[j] = this.students[i];
+                    j++;
+                }
+            }
+            this.students = newStudents;
+            removeModulesFromCsv(this.getCode());
+            addToCsvFile();
+        } else {
+            System.out.println("Student with ID " + studentId + " does not exist in module with Code " + this.getCode());
+        }
+    }
+
+    /**
+     * This method is used to check if a student is in a module
+     * @param studentId the id of the student
+     * @return true if the student is in the module, false otherwise
+     */
+    public boolean checkIfStudentIsInModule(int studentId) {
+        for (Integer student : this.students) {
+            if (student == studentId) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static boolean checkIfModuleExists(String code) {
         return CSVFileManager.checkIfLineExistsInCSVFile(FILE, code);
