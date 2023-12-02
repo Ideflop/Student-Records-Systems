@@ -131,6 +131,8 @@ public class Teacher extends Person {
         if (Modules.checkIfModuleExists(this.modules)) {
             Modules module = new Modules(this.modules);
             module.removeStudentFromModule(idNumber);
+        } else {
+            System.out.println("The module " + this.modules + " does not exist");
         }
     }
 
