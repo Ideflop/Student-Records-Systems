@@ -158,13 +158,20 @@ public class TeacherMenu {
             return;
         }
 
+        System.out.println("Input modules code: ");
+        String moduleCode = InputUtils.scanString(scanner);
+        if (!Modules.checkIfModuleExists(moduleCode)) {
+            System.out.println("Module does not exist");
+            return;
+        }
+
         System.out.println("Input Assignment name: ");
         String name = InputUtils.scanString(scanner);
         System.out.println("Input Assignment out of: ");
         int outOf = InputUtils.scanInt(scanner);
         System.out.println("Add students and mark: ");
         ArrayList<Integer> students = new ArrayList<>();
-        ArrayList<Integer> studentsMarks = new ArrayList<>();
+        ArrayList<Double> studentsMarks = new ArrayList<>();
 
         while(true) {
             System.out.println("Do you want to add a student? (y/n)");
@@ -175,7 +182,7 @@ public class TeacherMenu {
                 if(Student.checkStudentExists(id)) {
                     students.add(id);
                     System.out.println("Input student mark: ");
-                    int mark = InputUtils.scanInt(scanner);
+                    double mark = InputUtils.scanDouble(scanner);
                     studentsMarks.add(mark);
                 } else {
                     System.out.println("Student does not exist");
@@ -189,12 +196,13 @@ public class TeacherMenu {
 
 
         int[] studentsArray = new int[students.size()];
-        int[] studentsMarksArray = new int[studentsMarks.size()];
+        double[] studentsMarksArray = new double[studentsMarks.size()];
         for(int i = 0; i < students.size(); i++) {
             studentsArray[i] = students.get(i);
             studentsMarksArray[i] = studentsMarks.get(i);
         }
         Assignment assignment = new Assignment(name, code, outOf, studentsArray, studentsMarksArray); 
+        assignment.setModuleCode(moduleCode);
         assignment.addToCsvFile();
     }
 

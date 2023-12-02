@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.ArrayList;
 /**
  * Modules class is a class that stores the information of a module.
  */
@@ -6,6 +7,7 @@ public class Modules {
     private static final String FILE = "modules.csv";
     private String name;
     private String code;
+    private ArrayList<String> assignmentName;
     private int[] students;
     private int teacher;
 
@@ -25,13 +27,16 @@ public class Modules {
 
     public String getName() { return this.name; }
     public String getCode() { return this.code; }
+    public ArrayList<String> getAssignmentName() { return this.assignmentName; }
     public int[] getStudents() { return this.students; }
     public int getTeacher() { return this.teacher; }
 
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
+    public void setAssignmentName(ArrayList<String> assignmentName) { this.assignmentName = assignmentName; }
     public void setStudents(int[] students) { this.students = students; }
     public void setTeacher(int teacher) { this.teacher = teacher; }
+    public void addAssignmentName(String assignmentName) { this.assignmentName.add(assignmentName); }
 
     /**
      * Adds a new module to the csv file.
@@ -39,12 +44,15 @@ public class Modules {
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getCode()) ) {
             StringBuilder sb = new StringBuilder();
-            sb.append(this.getCode()+ "," + this.getName()+ "," + this.teacher + ","); 
+            sb.append(this.getCode()+ "," + this.getName()+ "," + this.teacher + "," + this.students.length); 
             for (int i = 0; i < this.students.length; i++) {
-                sb.append(this.students[i]);
+                sb.append(",").append(this.students[i]);
                 if (i != this.students.length - 1) {
                     sb.append(",");
                 }
+            }
+            for (int i = 0; i < this.assignmentName.size(); i++) {
+                sb.append("," + this.assignmentName.get(i));
             }
             int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString());
             if (result == 0) {
@@ -70,9 +78,14 @@ public class Modules {
             this.code = line2[0];
             this.name = line2[1];
             this.teacher = Integer.parseInt(line2[2]);
-            this.students = new int[line2.length - 3];
-            for (int i = 3; i < line2.length; i++) {
-                this.students[i - 3] = Integer.parseInt(line2[i]);
+            int numberOfStudents = Integer.parseInt(line2[3]);
+            this.students = new int[numberOfStudents];
+            for (int i = 0; i < numberOfStudents; i++) {
+                this.students[i] = Integer.parseInt(line2[4 + i]);
+            }
+            this.assignmentName = new ArrayList<>();
+            for (int i = 4 + numberOfStudents; i < line2.length; i++) {
+                this.assignmentName.add(line2[i]);
             }
         }
     }
@@ -125,6 +138,35 @@ public class Modules {
         return -1;
     }
 
+    public double[] getStudentMark(int studentId) {
+        getFromCsvFile(this.code);
+        ArrayList<Integer> students = new ArrayList<>();
+        ArrayList<Double> marks = new ArrayList<>();
+        for (int i = 0; i < this.students.length; i++) {
+            students.add(this.students[i]);
+        }
+        if (students.contains(studentId)) {
+            for (int i = 0; i < this.assignmentName.size(); i++) {
+                String assignmentName = this.assignmentName.get(i);
+                if (Assignment.checkIfAssignmentExists(assignmentName)) {
+                    Assignment assignment = new Assignment(assignmentName);
+                    String result = assignment.getStudentMark(studentId);
+                    if (result != null) {
+                        marks.add(Double.parseDouble(result));
+                    }
+                }
+            }
+        } else {
+            System.out.println("Student with ID " + studentId + " does not exist in module with Code " + this.getCode());
+            return null;
+        }
+        double[] marks2 = new double[marks.size()];
+        for (int i = 0; i < marks.size(); i++) {
+            marks2[i] = marks.get(i);
+        }
+        return marks2;
+    }
+
     @Override
     public String toString() {
         if ( this.name == null || this.code == null || this.students == null || this.teacher == 0 ) {
@@ -134,6 +176,7 @@ public class Modules {
                 "name: " + name +
                 ", code: " + code + 
                 ", students: " + Arrays.toString(students) +
-                ", teacher: " + teacher; 
+                ", teacher: " + teacher +
+                ", assignmentName: " + assignmentName;
     }
 }

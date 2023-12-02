@@ -18,13 +18,12 @@ public class QCAcalculator {
         this.qcaScore = qcaScore;
     }
 
-    public double calculateQcaScore(int moduleNum) {
-        this.moduleNum = moduleNum;
+    public double calculateQcaScore(Student student) {
         tempQca = 0.0;
+        String[] letterGrades = new Gradebook().getLetterGrades(student);
 
-        for (int i = 0; i < moduleNum; i++) {
-            String grade = scanner.next().toLowerCase(); // Converts input to lowercase
 
+        for (String grade : letterGrades) {
             switch (grade) {
                 case "a1":
                     tempQca += 4.0;
@@ -60,11 +59,10 @@ public class QCAcalculator {
                 case "ng":
                     break;
                 default:
-                    i--;
             }
         }
 
-        qcaScore = tempQca / moduleNum;
+        qcaScore = tempQca / letterGrades.length;
         System.out.println(qcaScore);
         return qcaScore;
     }

@@ -9,6 +9,8 @@ public class Department
     private ArrayList<Programme> programmes;
     private ArrayList<Modules> modules;
 
+    public Department() {}
+
     public Department(int deptID) {
         this.deptID = deptID;
         this.programmes = new ArrayList<Programme>();
@@ -105,6 +107,10 @@ public class Department
         } else {
             System.out.println("Default with Name" + id + " does not exist.");
         }
+    }
+
+    public double getQcaScoreForStudent(Student student) {
+        return new QCAcalculator().calculateQcaScore(student);  
     }
 
     @Override
