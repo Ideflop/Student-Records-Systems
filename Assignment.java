@@ -49,30 +49,26 @@ public class Assignment{
             sb.append(this.getCode()).append(",").append(this.getName()).append(",").append(this.getModuleCode()).append(",").append(this.getOutOf());
             for (int i = 0; i < this.students.length; i++) {
                 sb.append(",").append(this.students[i]).append(",").append(this.studentsMarks[i]);
-                if (i != this.students.length - 1) {
-                    sb.append(",");
-                }
-                
             }
             int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString());
             if (result == 0) {
-                System.out.println("Module with Code " + this.getCode()+ " added successfully.");
+                System.out.println("Assignment with Code " + this.getCode()+ " added successfully.");
             } else {
-                System.out.println("Module with Code " + this.getCode()+ " could not be added.");
+                System.out.println("Assignment with Code " + this.getCode()+ " could not be added.");
             }
         } else {
-            System.out.println("Module with Code " + this.getCode()+ " already exists.");
+            System.out.println("Assignment with Code " + this.getCode()+ " already exists.");
         }
     }
 
     /**
-     * This method is used to get the information of a module from a csv file
-     * @param code the code of the module
+     * This method is used to get the information of a assignment from a csv file
+     * @param code the code of the assignment
      */
     public void getFromCsvFile(String code) {
         String line = CSVFileManager.getLineFromCSVFile(FILE, code);
         if (line == null) {
-            System.out.println("Module with Code " + code + " does not exist.");
+            System.out.println("Assignment with Code " + code + " does not exist.");
         } else {
             String[] line2 = line.split(",");
             this.code = line2[0];
@@ -80,10 +76,10 @@ public class Assignment{
             this.moduleCode = line2[2];
             this.outOf = Integer.parseInt(line2[3]);
             ArrayList<Integer> students = new ArrayList<>();
-            ArrayList<Integer> studentsMarks = new ArrayList<>();
+            ArrayList<Double> studentsMarks = new ArrayList<>();
             for (int i = 4; i < line2.length; i=i+2) {
                 students.add(Integer.parseInt(line2[i]));
-                studentsMarks.add(Integer.parseInt(line2[i+1]));
+                studentsMarks.add(Double.parseDouble(line2[i+1]));
             }
             this.students = students.stream().mapToInt(i -> i).toArray();
             this.studentsMarks = studentsMarks.stream().mapToDouble(i -> i).toArray();
@@ -119,6 +115,7 @@ public class Assignment{
                 studentsMarks[i] = mark;
             }
         }
+        CSVFileManager.removeLineFromCSVFile(FILE, code);
         addToCsvFile();
     }
 
@@ -134,6 +131,7 @@ public class Assignment{
         newStudentsMarks[studentsMarks.length] = mark;
         this.students = newStudents;
         this.studentsMarks = newStudentsMarks;
+        CSVFileManager.removeLineFromCSVFile(FILE, code);
         addToCsvFile();
     }
 

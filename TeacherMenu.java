@@ -19,7 +19,6 @@ public class TeacherMenu {
     private static final int CHECK_PROGRAMME_INT = 10;
     private static final int CHECK_STUDENT_INT = 11; 
     private static final int EXIT_INT = 12;
-    // if from departemnt then can loggin as departement peopele
 
     private static final String CHOOSE_STRING = "Choose an option: ";
     private static final String CREATE_ASSIGNMENT_STRING = " : Create an Assignment";
@@ -61,6 +60,7 @@ public class TeacherMenu {
                 scanner.nextLine();
             } catch(Exception e) {
                 System.out.println(e);
+                e.printStackTrace();
             }
 
         }

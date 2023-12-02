@@ -70,6 +70,7 @@ public class AdministratorMenu {
                 scanner.nextLine();
             } catch(Exception e) {
                 System.out.println(e);
+                e.printStackTrace();
             }
 
         }
@@ -110,7 +111,7 @@ public class AdministratorMenu {
             .append(CHECK_PROGRAMME_INT).append(CHECK_PROGRAMME_STRING).append("\n")
             .append(CHECK_DEPARTMENT_INT).append(CHECK_DEPARTMENT_STRING).append("\n")
             .append(EXIT_INT).append(EXIT_STRING).append("\n")
-            .append(">>>");
+            .append(">>> ");
 
         System.out.print(sb);
     }

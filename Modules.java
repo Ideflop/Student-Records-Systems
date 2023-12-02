@@ -47,12 +47,11 @@ public class Modules {
             sb.append(this.getCode()).append(",").append(this.getName()).append(",").append(this.teacher).append(",").append(this.students.length);
             for (int i = 0; i < this.students.length; i++) {
                 sb.append(",").append(this.students[i]);
-                if (i != this.students.length - 1) {
-                    sb.append(",");
-                }
             }
-            for (String s : this.assignmentName) {
-                sb.append(",").append(s);
+            if (this.assignmentName != null) {
+                for (String s : this.assignmentName) {
+                    sb.append(",").append(s);
+                }
             }
             int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString());
             if (result == 0) {
@@ -117,6 +116,7 @@ public class Modules {
      * @return true if the student is in the module, false otherwise
      */
     public boolean checkIfStudentIsInModule(int studentId) {
+        getFromCsvFile(this.code);
         for (Integer student : this.students) {
             if (student == studentId) {
                 return true;
