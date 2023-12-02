@@ -339,8 +339,10 @@ public class AdministratorMenu {
         String level = InputUtils.scanString(scanner);
         System.out.println("Input Program type: ");
         String type = InputUtils.scanString(scanner);
+        System.out.println("Passing QCA: ");
+        double qca = InputUtils.scanDouble(scanner);
 
-        Programme program = new Programme(name, duration, level, type);
+        Programme program = new Programme(name, duration, level, type, qca);
         
         System.out.println("Do you want to add modules to the program? (y/n)");
         String addModules = InputUtils.scanString(scanner);
