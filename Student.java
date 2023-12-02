@@ -66,7 +66,7 @@ public class Student extends Person {
     /**
      * Sets the first semester QCA of the student.
      *
-     * @param qca The new first semester QCA of the student.
+     * @param qcaSem1 The new first semester QCA of the student.
      */
     public void setQcaSem1(double qcaSem1) {
         this.qcaSem1 = qcaSem1;
@@ -82,7 +82,7 @@ public class Student extends Person {
     /**
      * Sets the second semester QCA of the student.
      *
-     * @param qca The new second semester QCA of the student.
+     * @param qcaSem2 The new second semester QCA of the student.
      */
     public void setQcaSem2(double qcaSem2) {
         this.qcaSem2 = qcaSem2;
@@ -98,7 +98,7 @@ public class Student extends Person {
     /**
      * Sets the whole year QCA of the student.
      *
-     * @param  The new whole year QCA of the student.
+     * @param qcaYear The new whole year QCA of the student.
      */
     public void setQcaYear(double qcaYear) {
         this.qcaYear = qcaYear;
@@ -122,7 +122,7 @@ public class Student extends Person {
     /**
      * Sets the program of the student.
      *
-     * @param  The new program of the student.
+     * @param program The new program of the student.
      */
     public void setProgram(String program) {
         this.program = program;

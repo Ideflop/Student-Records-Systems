@@ -33,9 +33,7 @@ public class AcademicInformationTeacher extends AcademicInformation {
     @Override
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getIdNumber()) ) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.getIdNumber()).append(",").append(this.getName()).append(",").append(this.getCollegeLevel()).append(",").append(this.getPhoneNumber()).append(",").append(this.getEmail()).append(",").append(this.getAddress()).append(",").append(this.office).append(",").append(this.modules).append(",").append(this.isOnExaminationBoard);
-            int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString()); 
+            int result = CSVFileManager.addLineToCSVFile(FILE, this.getIdNumber() + "," + this.getName() + "," + this.getCollegeLevel() + "," + this.getPhoneNumber() + "," + this.getEmail() + "," + this.getAddress() + "," + this.office + "," + this.modules + "," + this.isOnExaminationBoard);
             if (result == 0) {
                 System.out.println("Teacher with ID Number " + this.getIdNumber() + " added successfully.");
             } else {

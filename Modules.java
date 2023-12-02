@@ -44,15 +44,15 @@ public class Modules {
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getCode()) ) {
             StringBuilder sb = new StringBuilder();
-            sb.append(this.getCode()+ "," + this.getName()+ "," + this.teacher + "," + this.students.length); 
+            sb.append(this.getCode()).append(",").append(this.getName()).append(",").append(this.teacher).append(",").append(this.students.length);
             for (int i = 0; i < this.students.length; i++) {
                 sb.append(",").append(this.students[i]);
                 if (i != this.students.length - 1) {
                     sb.append(",");
                 }
             }
-            for (int i = 0; i < this.assignmentName.size(); i++) {
-                sb.append("," + this.assignmentName.get(i));
+            for (String s : this.assignmentName) {
+                sb.append(",").append(s);
             }
             int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString());
             if (result == 0) {
@@ -84,9 +84,7 @@ public class Modules {
                 this.students[i] = Integer.parseInt(line2[4 + i]);
             }
             this.assignmentName = new ArrayList<>();
-            for (int i = 4 + numberOfStudents; i < line2.length; i++) {
-                this.assignmentName.add(line2[i]);
-            }
+            this.assignmentName.addAll(Arrays.asList(line2).subList(4 + numberOfStudents, line2.length));
         }
     }
 
@@ -99,9 +97,9 @@ public class Modules {
         if (found) {
             int[] newStudents = new int[this.students.length - 1];
             int j = 0;
-            for (int i = 0; i < this.students.length; i++) {
-                if (this.students[i] != studentId) {
-                    newStudents[j] = this.students[i];
+            for (int student : this.students) {
+                if (student != studentId) {
+                    newStudents[j] = student;
                     j++;
                 }
             }
@@ -142,12 +140,11 @@ public class Modules {
         getFromCsvFile(this.code);
         ArrayList<Integer> students = new ArrayList<>();
         ArrayList<Double> marks = new ArrayList<>();
-        for (int i = 0; i < this.students.length; i++) {
-            students.add(this.students[i]);
+        for (int student : this.students) {
+            students.add(student);
         }
         if (students.contains(studentId)) {
-            for (int i = 0; i < this.assignmentName.size(); i++) {
-                String assignmentName = this.assignmentName.get(i);
+            for (String assignmentName : this.assignmentName) {
                 if (Assignment.checkIfAssignmentExists(assignmentName)) {
                     Assignment assignment = new Assignment(assignmentName);
                     String result = assignment.getStudentMark(studentId);

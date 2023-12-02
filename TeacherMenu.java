@@ -61,7 +61,6 @@ public class TeacherMenu {
                 scanner.nextLine();
             } catch(Exception e) {
                 System.out.println(e);
-                e.printStackTrace(System.out);
             }
 
         }
@@ -102,8 +101,9 @@ public class TeacherMenu {
     /**
      * This method is used to process the user input
      * @param userInput the user input
+     * @throws StudentRecordSystemException if the user input is invalid
      */
-    private void InputProcessing(int userInput) {
+    private void InputProcessing(int userInput) throws StudentRecordSystemException{
         switch(userInput) {
             case CREATE_ASSIGNMENT_INT:
                 createAssignment();
@@ -142,8 +142,7 @@ public class TeacherMenu {
                 System.out.println("Exiting to Main Menu");
                 break;
             default:
-                System.out.println(userInput + " is not a valid option");
-                break;
+                throw new StudentRecordSystemException(userInput + " is not a valid option");
         }
     }
 

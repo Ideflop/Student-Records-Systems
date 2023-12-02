@@ -16,9 +16,7 @@ public class AcademicInformationAdministrator extends AcademicInformation {
     @Override
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getIdNumber()) ) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.getIdNumber()).append(",").append(this.getName()).append(",").append(this.getCollegeLevel()).append(",").append(this.getPhoneNumber()).append(",").append(this.getEmail()).append(",").append(this.getAddress());
-            int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString()); 
+            int result = CSVFileManager.addLineToCSVFile(FILE, this.getIdNumber() + "," + this.getName() + "," + this.getCollegeLevel() + "," + this.getPhoneNumber() + "," + this.getEmail() + "," + this.getAddress());
             if (result == 0) {
                 System.out.println("Administrator with ID Number " + this.getIdNumber() + " successfully added.");
             } else {

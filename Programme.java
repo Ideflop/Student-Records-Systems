@@ -12,8 +12,8 @@ public class Programme
 
     public Programme(String name) {
         this.name = name;
-        this.students = new ArrayList<Student>();
-        this.modules = new ArrayList<Modules>();
+        this.students = new ArrayList<>();
+        this.modules = new ArrayList<>();
         getFromCsvFile(this.getName());
     }
 
@@ -23,8 +23,8 @@ public class Programme
         this.level = level;
         this.type = type;
         this.passingQca = passingQca;
-        this.students = new ArrayList<Student>();
-        this.modules = new ArrayList<Modules>();
+        this.students = new ArrayList<>();
+        this.modules = new ArrayList<>();
     }
     public void setName(String n) {this.name = n;}
     public void setDuration(String d) {this.duration = d;}

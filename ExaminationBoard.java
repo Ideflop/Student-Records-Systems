@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class ExaminationBoard
 {
-    // what data types do i need?
+    // what data types do I need?
     private Programme programme;
     private double passingQca = 1.2; // stand in variable
     private ArrayList<Student> students;
@@ -23,11 +23,7 @@ public class ExaminationBoard
     public double getQcaSem2(Student student) {return student.getQcaSem2();}
     public double getQca(Student student) {return student.getQcaYear();}
     public boolean passFail(double qcaToCheck) {
-        boolean pass = false;
-        if (qcaToCheck >= passingQca) {
-            pass = true;
-        }
-        return pass;
+        return qcaToCheck >= passingQca;
     }
     // // 1 for sem1, 2 for sem2, 3 for year
     public String checkQca(int assessmentPeriod, Student s){

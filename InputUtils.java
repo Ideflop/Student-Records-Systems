@@ -8,8 +8,7 @@ public class InputUtils {
      * @return the scanner
      */
     public static Scanner scanOpen(){
-        Scanner scanner = new Scanner(System.in);
-        return scanner;
+        return new Scanner(System.in);
     }
 
     /**
@@ -40,9 +39,9 @@ public class InputUtils {
 
     /**
      * This method is used to scan the value of the input and check
-     * if it is a Int else it will give an error 
+     * if it is an Int else it will give an error
      * @param scanner scans an int
-     * @return the user input as a int
+     * @return the user input as an int
      */
     public static int scanInt(Scanner scanner){
         int userInput;
