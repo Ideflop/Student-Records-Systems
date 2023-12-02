@@ -5,7 +5,7 @@ public class Department
 
     private String name;
     private int deptID;
-    private ExaminationBoard examBoard; // for each dpartment
+    private ExaminationBoard examBoard; // for each department
     private ArrayList<Programme> programmes;
     private ArrayList<Modules> modules;
 
@@ -13,15 +13,15 @@ public class Department
 
     public Department(int deptID) {
         this.deptID = deptID;
-        this.programmes = new ArrayList<Programme>();
-        this.modules = new ArrayList<Modules>();
+        this.programmes = new ArrayList<>();
+        this.modules = new ArrayList<>();
     }
 
     public Department(String name, int ID) {
         this.name = name;
         this.deptID = ID;
-        this.programmes = new ArrayList<Programme>();
-        this.modules = new ArrayList<Modules>();
+        this.programmes = new ArrayList<>();
+        this.modules = new ArrayList<>();
     }
 
     public String getName() {return this.name;}

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 /**
- * Assignment class is a class that stores the information of a assignment
+ * Assignment class is a class that stores the information of an assignment
  */
 public class Assignment{
     private static final String FILE = "assignment.csv";

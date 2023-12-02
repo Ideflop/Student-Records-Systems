@@ -4,15 +4,13 @@ public class StudentMenu {
     private static Scanner scanner;
     private Student student;
     
-    private static final int CHECK_QCA_SEM1 = 1;
-    private static final int CHECK_QCA_SEM2 = 2;
-    private static final int CHECK_QCA_YEAR = 3;
-    private static final int CHECK_PROGRAMME_INT = 4;
-    private static final int CHECK_MODULE_INT = 5;
-    private static final int CHECK_DEPARTMENT_INT = 6;
-    private static final int CHECK_MODULE_GRADE_INT = 7;
-    private static final int CHECK_PASSING_INT = 8; 
-    private static final int EXIT_INT = 9;
+    private static final int CHECK_QCA_YEAR = 1;
+    private static final int CHECK_PROGRAMME_INT = 2;
+    private static final int CHECK_MODULE_INT = 3;
+    private static final int CHECK_DEPARTMENT_INT = 4;
+    private static final int CHECK_MODULE_GRADE_INT = 5;
+    private static final int CHECK_PASSING_INT = 6;
+    private static final int EXIT_INT = 7;
 
     private static final String CHOOSE_OPTION = "Choose an option: ";
     private static final String CHECK_QCA_YEAR_STRING = " : Check QCA for the whole year";
@@ -48,7 +46,6 @@ public class StudentMenu {
                 scanner.nextLine();
             } catch(Exception e) {
                 System.out.println(e);
-                e.printStackTrace(System.out);
             }
 
         }
@@ -85,8 +82,9 @@ public class StudentMenu {
     /**
      * The InputProcessing method is used to process the user input
      * @param userInput the user input
+     * @throws StudentRecordSystemException if the user input is not valid
      */
-    private void InputProcessing(int userInput) {
+    private void InputProcessing(int userInput) throws StudentRecordSystemException{
         switch (userInput) {
             case CHECK_QCA_YEAR:
                 checkQCA();
@@ -110,8 +108,7 @@ public class StudentMenu {
                 System.out.println("Exiting to Main Menu");
                 break;
             default:
-                System.out.println(userInput + " is not a valid option");
-                break;
+                throw new StudentRecordSystemException(userInput + " is not a valid option");
         }
     }
 

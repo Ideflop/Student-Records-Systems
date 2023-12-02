@@ -56,7 +56,6 @@ public class StudentRecordSystem {
                 scanner.nextLine();
             } catch(Exception e) {
                 System.out.println(e);
-                e.printStackTrace(System.out);
             }
 
         }
@@ -88,15 +87,15 @@ public class StudentRecordSystem {
      * @return userInput as an Integer
      */
     private int readUserInput() {
-        int userInput = InputUtils.scanInt(scanner);
-        return userInput;
+        return InputUtils.scanInt(scanner);
     }
 
     /**
      * This method is used to process the user input
      * @param userInput the user input
+     * @throws StudentRecordSystemException if the user input is invalid
      */
-    private void InputProcessing(int userInput) {
+    private void InputProcessing(int userInput) throws StudentRecordSystemException{
         switch(userInput) {
             case STUDENT_INT:
                 studentLogIn();
@@ -121,8 +120,7 @@ public class StudentRecordSystem {
                 InputUtils.scanClose(scanner);
                 break;
             default:
-                System.out.println(userInput + " is not a valid option");
-                break;
+                throw new StudentRecordSystemException(userInput + " is not a valid option");
         }
 
     }

@@ -22,9 +22,7 @@ public class AcademicInformationStudent extends AcademicInformation {
     @Override
     public void addToCsvFile() {
         if ( !CSVFileManager.checkIfLineExistsInCSVFile(FILE, this.getIdNumber()) ) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.getIdNumber()).append(",").append(this.getName()).append(",").append(this.getCollegeLevel()).append(",").append(this.getPhoneNumber()).append(",").append(this.getEmail()).append(",").append(this.getAddress()).append(",").append(this.program);
-            int result = CSVFileManager.addLineToCSVFile(FILE, sb.toString()); 
+            int result = CSVFileManager.addLineToCSVFile(FILE, this.getIdNumber() + "," + this.getName() + "," + this.getCollegeLevel() + "," + this.getPhoneNumber() + "," + this.getEmail() + "," + this.getAddress() + "," + this.program);
             if (result == 0) {
                 System.out.println("Student with ID Number " + this.getIdNumber() + " successfully added.");
             } else {
@@ -42,8 +40,7 @@ public class AcademicInformationStudent extends AcademicInformation {
             System.out.println("Student with ID Number " + idNumber + " does not exist.");
             return new String[0];
         } else {
-            String[] studentInfoArray = studentInfo.split(",");
-            return studentInfoArray;
+            return studentInfo.split(",");
         }
     }
 
