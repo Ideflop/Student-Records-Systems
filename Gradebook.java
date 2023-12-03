@@ -74,17 +74,20 @@ public class Gradebook {
         ArrayList<String> letterGrades = new ArrayList<>();
         for (Modules module : modules) {
             ArrayList<Double> AssignmentScores = new ArrayList<>();
+            if (module.getAssignmentName() == null) {
+                continue;
+            }
             for (String assignmentName : module.getAssignmentName()) {
                 String grade  = new Assignment(assignmentName).getStudentMark(student.getIdNumber());
                 if (grade != null) {
                     AssignmentScores.add(Double.parseDouble(grade));
                 }
+                this.testscores = new double[AssignmentScores.size()];
+                for (int i = 0; i < AssignmentScores.size(); i++) {
+                    this.testscores[i] = AssignmentScores.get(i);
+                }
+                letterGrades.add(getGrade());
             }
-            this.testscores = new double[AssignmentScores.size()];
-            for (int i = 0; i < AssignmentScores.size(); i++) {
-                this.testscores[i] = AssignmentScores.get(i);
-            }
-            letterGrades.add(getGrade());
         }
         String[] result = new String[letterGrades.size()];
         for (int i = 0; i < letterGrades.size(); i++) {

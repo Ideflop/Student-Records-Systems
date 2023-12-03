@@ -27,7 +27,10 @@ public class Modules {
 
     public String getName() { return this.name; }
     public String getCode() { return this.code; }
-    public ArrayList<String> getAssignmentName() { return this.assignmentName; }
+    public ArrayList<String> getAssignmentName() { 
+        getFromCsvFile(this.code);
+        return this.assignmentName; 
+    }
     public int[] getStudents() { return this.students; }
     public int getTeacher() { return this.teacher; }
 
@@ -136,6 +139,16 @@ public class Modules {
         return -1;
     }
 
+    public void addAssignmentToModule(String assignmentName) {
+        getFromCsvFile(this.code);
+        if (this.assignmentName == null) {
+            this.assignmentName = new ArrayList<>();
+        }
+        this.assignmentName.add(assignmentName);
+        removeModulesFromCsv(this.getCode());
+        addToCsvFile();
+    }
+
     public double[] getStudentMark(int studentId) {
         getFromCsvFile(this.code);
         ArrayList<Integer> students = new ArrayList<>();
@@ -146,6 +159,7 @@ public class Modules {
         if (students.contains(studentId)) {
             for (String assignmentName : this.assignmentName) {
                 if (Assignment.checkIfAssignmentExists(assignmentName)) {
+                    System.out.println("Assignment Name: " + assignmentName);
                     Assignment assignment = new Assignment(assignmentName);
                     String result = assignment.getStudentMark(studentId);
                     if (result != null) {

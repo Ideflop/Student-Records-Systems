@@ -46,8 +46,8 @@ public class StudentMenu {
                 scanner.nextLine();
             } catch(Exception e) {
                 System.out.println(e);
+                e.printStackTrace();
             }
-
         }
     }
 
@@ -116,7 +116,7 @@ public class StudentMenu {
      * The checkQCA method is used to get the QCA of a student
      */
     public void checkQCA() {
-        System.out.println(this.student.getQcaYear());
+        System.out.println("QCA score: " + this.student.getQcaYear());
     }
 
     /**
@@ -168,10 +168,7 @@ public class StudentMenu {
         System.out.println("Input Module code: ");
         String code = InputUtils.scanString(scanner);
         if(Modules.checkIfModuleExists(code)) {
-            double[] result = new Modules(code).getStudentMark(this.student.getIdNumber());
-            for (Double d : result ) {
-                System.out.println(d);
-            }
+            new Modules(code).getStudentMark(this.student.getIdNumber());
         } else {
             System.out.println("Module does not exist");
         }

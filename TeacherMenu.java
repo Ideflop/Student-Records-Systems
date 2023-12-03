@@ -203,6 +203,7 @@ public class TeacherMenu {
         Assignment assignment = new Assignment(name, code, outOf, studentsArray, studentsMarksArray); 
         assignment.setModuleCode(moduleCode);
         assignment.addToCsvFile();
+        new Modules(moduleCode).addAssignmentToModule(code);
     }
 
     /**

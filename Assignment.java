@@ -102,6 +102,7 @@ public class Assignment{
         getFromCsvFile(code);
         for (int i = 0; i < students.length; i++) {
             if (students[i] == studentId) {
+                System.out.println(studentsMarks[i]);
                 return String.valueOf(studentsMarks[i]);
             }
         }
