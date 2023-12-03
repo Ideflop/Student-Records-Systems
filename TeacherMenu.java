@@ -39,6 +39,7 @@ public class TeacherMenu {
     /**
      * This is the constructor for the TeacherMenu class
      * @param teacher the teacher that is logged in
+     * @param scanner the scanner
      */
     public TeacherMenu(Teacher teacher, Scanner scanner) {
         this.teacher = teacher;

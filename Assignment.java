@@ -51,8 +51,8 @@ public class Assignment{
      */
     public String getModuleCode() { return this.moduleCode; }
     /**
-     * Getter for the out of of the assignment
-     * @return the out of of the assignment
+     * Getter for the out of  the assignment
+     * @return the out of  the assignment
      */
     public int getOutOf() { return this.outOf; }
     /**
@@ -82,7 +82,7 @@ public class Assignment{
      */
     public void setModuleCode(String moduleCode) { this.moduleCode = moduleCode; }
     /**
-     * Setter for the out of of the assignment
+     * Setter for the out of  the assignment
      * @param outOf of the assignment
      */
     public void setOutOf(int outOf) { this.outOf = outOf; }

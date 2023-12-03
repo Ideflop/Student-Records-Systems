@@ -9,8 +9,7 @@
 public class StudentRecordSystemException extends RuntimeException {
 
     /**
-     * Constructs a StudentRecordSystemException object with the specified
-     * message.
+     * Constructs a StudentRecordSystemException object
      */
     public StudentRecordSystemException() {
         super();

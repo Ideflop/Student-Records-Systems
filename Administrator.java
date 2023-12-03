@@ -37,7 +37,7 @@ public class Administrator extends Person {
 
     /**
      * The addAdministrationToCSV() method is used to add an administrator to a csv file
-     * using the AcademicInformationAdministration class
+     * using the AcademicInformationAdministratior class
      */
     public void addAdministrationToCSV() {
         this.academicInfo = new AcademicInformationAdministrator(this);
@@ -46,7 +46,7 @@ public class Administrator extends Person {
 
     /**
      * The getAdministratorFromCSV() method is used to get an administrator from a csv file
-     * using the AcademicInformationAdministration class
+     * using the AcademicInformationAdministrator class
      */
     public void getAdministratorFromCSV() {
         extractDataFromString(idNumber);
@@ -54,7 +54,7 @@ public class Administrator extends Person {
 
     /**
      * The getAdministratorFromCSV() method is used to get an administrator from a csv file
-     * using the AcademicInformationAdministration class
+     * using the AcademicInformationAdministratior class
      * @param idNumber of the administrator
      */
     public void getAdministratorFromCSV(int idNumber) {
@@ -79,10 +79,8 @@ public class Administrator extends Person {
     }
 
     /**
-     * The checkIfAdministratorExistsInCSVFile() method is used to check if an administrator exists in a csv file
-     * using the AcademicInformationAdministration class
-     * @param idNumber of the administrator
-     * @return true if the administrator exists, false otherwise
+     * The createTeacher() method is used to create a teacher
+     * @param teacher to be created
      */
     public void createTeacher(Teacher teacher) {
         teacher.addTeacherToCSV();
@@ -114,7 +112,7 @@ public class Administrator extends Person {
 
     /**
      * The checkIfAdministratorExistsInCSVFile() method is used to check if an administrator exists in a csv file
-     * using the AcademicInformationAdministration class
+     * using the AcademicInformationAdministrator class
      * @param idNumber of the administrator
      * @return true if the administrator exists, false otherwise
      */
@@ -124,7 +122,7 @@ public class Administrator extends Person {
 
     /**
      * The removeAdministratorFromCsv() method is used to remove an administrator from a csv file
-     * using the AcademicInformationAdministration class
+     * using the AcademicInformationAdministrator class
      * @param idNumber of the administrator
      * @return 1 if the administrator was removed, -1 otherwise
      */
