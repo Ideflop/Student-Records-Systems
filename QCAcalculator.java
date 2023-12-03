@@ -22,9 +22,8 @@ public class QCAcalculator {
         tempQca = 0.0;
         String[] letterGrades = new Gradebook().getLetterGrades(student);
 
-
         for (String grade : letterGrades) {
-            switch (grade) {
+            switch (grade.toLowerCase()) {
                 case "a1":
                     tempQca += 4.0;
                     break;
@@ -63,7 +62,6 @@ public class QCAcalculator {
         }
 
         qcaScore = tempQca / letterGrades.length;
-        System.out.println(qcaScore);
         return qcaScore;
     }
 }

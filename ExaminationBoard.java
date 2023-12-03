@@ -44,10 +44,11 @@ public class ExaminationBoard
                 output += String.format("%f - FAIL", getQcaSem2(s));
             }
         } else if (assessmentPeriod == 3) { // Year
-            if (passFail(getQca(s))) {
-                output += String.format("%f - PASS", getQca(s));
+            double qca = getQca(s);
+            if (passFail(qca)) {
+                output += String.format("%f - PASS", qca);
             }else {
-                output += String.format("%f - FAIL", getQca(s));
+                output += String.format("%f - FAIL", qca);
             }
         }
         return output;
