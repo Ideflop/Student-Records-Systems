@@ -10,6 +10,10 @@ public class Teacher extends Person {
     private boolean isOnExaminationBoard;
     private AcademicInformationTeacher academicInfo;
 
+    /**
+     * This constructor is used to create a teacher object
+     * @param idNumber the id number of the teacher
+     */
     public Teacher(int idNumber) {
         this.idNumber = idNumber;
     }
@@ -91,6 +95,10 @@ public class Teacher extends Person {
         this.academicInfo.addToCsvFile();
     }
 
+    /**
+     * The getTeacherFromCSV() method is used to get a teacher from a csv file
+     * using the AcademicInformationTeacher class
+     */
     public void getTeacherFromCSV() {
         this.academicInfo = new AcademicInformationTeacher(this.idNumber, this);
         String[] line = this.academicInfo.getFromCsvFile(this.idNumber);
@@ -107,14 +115,28 @@ public class Teacher extends Person {
         }
     }
 
+    /**
+     * The getTeacher() method is used to get a teacher
+     * @return the teacher
+     */
     public Teacher getTeacher() {
         return this;
     }
 
+    /**
+     * The checkIfTeacherExists() method is used to check if a teacher exists
+     * @param idNumber the id number of the teacher
+     * @return true if the teacher exists, false otherwise
+     */
     public static boolean checkIfTeacherExists(int idNumber) {
         return AcademicInformationTeacher.checkIfTeacherExistsInCSVFile(idNumber);
     }
 
+    /**
+     * The removeTeacherFromCsv() method is used to remove a teacher from a csv file
+     * @param idNumber the id number of the teacher
+     * @return 1 if the teacher was removed, -1 otherwise
+     */
     public static int removeTeacherFromCsv(int idNumber){
         if (checkIfTeacherExists(idNumber)){
             return CSVFileManager.removeLineFromCSVFile(FILE, idNumber);
@@ -139,6 +161,7 @@ public class Teacher extends Person {
     /**
      * The checkIfStudentExistsInModule() method is used to check if a student exists in a module
      * @param idNumber the id number of the student
+     * @return true if the student exists in the module, false otherwise
      */
     public boolean checkIfStudentExistsInModule(int idNumber) {
         getTeacherFromCSV();
@@ -151,6 +174,7 @@ public class Teacher extends Person {
 
     /**
      * The toString() method is used to print the information of a teacher
+     * @return the information of a teacher
      */
     @Override
     public String toString() {

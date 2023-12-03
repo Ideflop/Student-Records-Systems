@@ -1,4 +1,6 @@
-
+/**
+ * The `Student` class is a subclass of `Person` and represents a student in the system.
+ */
 public class Student extends Person {
     private static final String FILE = "student.csv";
     private int idNumber;//The unique student id number
@@ -17,6 +19,10 @@ public class Student extends Person {
         this.collegeLevel = "";
     }
 
+    /**
+     * Constructor for Student class.
+     * @param idNumber of the student
+     */
     public Student(int idNumber) {
         this.idNumber = idNumber;
     }
@@ -36,7 +42,6 @@ public class Student extends Person {
         this.idNumber = idNumber;
         this.collegeLevel = collegeLevel;
         this.program = program;
-        //addStudentToCsv();
     }
    
      /**
@@ -135,6 +140,9 @@ public class Student extends Person {
         this.acadamicInfo.addToCsvFile();
     }
 
+    /**
+     * Retrieves the student's information from the CSV file.
+     */
     public void getStudentFromCSV() {
         this.acadamicInfo = new AcademicInformationStudent(this.idNumber, this);
         String[] line = this.acadamicInfo.getFromCsvFile(this.idNumber);
@@ -149,10 +157,20 @@ public class Student extends Person {
         }
     }
 
+    /**
+     * Checks if a student exists in the CSV file.
+     * @param idNumber The ID number of the student.
+     * @return True if the student exists in the CSV file, false otherwise.
+     */
     public static boolean checkStudentExists(int idNumber){
         return AcademicInformationStudent.checkIfStudentExistsInCSVFile(idNumber);
     }
 
+    /**
+     * Removes a student from the CSV file.
+     * @param idNumber The ID number of the student.
+     * @return 1 if the student was removed successfully, -1 otherwise.
+     */
     public static int removeStudentFromCsv(int idNumber){
         if (checkStudentExists(idNumber)){
             return CSVFileManager.removeLineFromCSVFile(FILE, idNumber);
@@ -161,6 +179,10 @@ public class Student extends Person {
     }
 
 
+    /**
+     * To string method for the Student class.
+     * @return A string representation of the Student class.
+     */
     @Override
     public String toString() {
         if (idNumber == 0 || collegeLevel == null || program == null) {

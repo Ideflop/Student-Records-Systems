@@ -1,4 +1,6 @@
-
+/**
+ * The `Phd` class extends the `Student` class and represents a phd student.
+ */
 public class Phd extends Student {
     /**
      * Constructs an `Phd` object with the specified attributes.

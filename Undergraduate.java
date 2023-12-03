@@ -1,4 +1,6 @@
-
+/**
+ * Represents an undergraduate student extending the `Student` class.
+ */
 public class Undergraduate extends Student {
     /**
      * Constructs an `Undergraduate` object with the specified attributes.

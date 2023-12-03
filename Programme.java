@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+/**
+ * Programme class is a class that stores the information of a programme.
+ */
 public class Programme
 {
     private static final String FILE = "programme.csv";
@@ -10,6 +13,10 @@ public class Programme
     private ArrayList<Student> students;
     private ArrayList<Modules> modules;
 
+    /**
+     * Constructor for objects of class Programme
+     * @param name of the programme
+     */
     public Programme(String name) {
         this.name = name;
         this.students = new ArrayList<>();
@@ -17,6 +24,14 @@ public class Programme
         getFromCsvFile(this.getName());
     }
 
+    /**
+     * Constructor for objects of class Programme
+     * @param name of the programme
+     * @param duration of the programme
+     * @param level of the programme
+     * @param type of the programme
+     * @param passingQca of the programme
+     */
     public Programme(String name, String duration, String level, String type, double passingQca) {
         this.name = name;
         this.duration = duration;
@@ -26,25 +41,82 @@ public class Programme
         this.students = new ArrayList<>();
         this.modules = new ArrayList<>();
     }
+
+    /**
+     * Setter for the name of the programme
+     * @param n the name of the programme
+     */
     public void setName(String n) {this.name = n;}
+    /**
+     * Setter for the duration of the programme
+     * @param d the duration of the programme
+     */
     public void setDuration(String d) {this.duration = d;}
+    /**
+     * Setter for the level of the programme
+     * @param l the level of the programme
+     */
     public void setLevel(String l) {this.level = l;}
+    /**
+     * Setter for the type of the programme
+     * @param t the type of the programme
+     */
     public void setType(String t) {this.type = t;}
+    /**
+     * Setter for the passingQca of the programme
+     * @param q the passingQca of the programme
+     */
     public void setPassingQca(double q) {this.passingQca = q;}
 
+    /**
+     * Getter for the name of the programme
+     * @return the name of the programme
+     */
     public String getName() {return this.name;}
+    /**
+     * Getter for the duration of the programme
+     * @return the duration of the programme
+     */
     public String getDuration() {return this.duration;}
+    /**
+     * Getter for the level of the programme
+     * @return the level of the programme
+     */
     public String getLevel() {return this.level;}
+    /**
+     * Getter for the type of the programme
+     * @return the type of the programme
+     */
     public String getType() {return this.type;}
+    /**
+     * Getter for the passingQca of the programme
+     * @return the passingQca of the programme
+     */
     public double getPassingQca() {return this.passingQca;}
 
+    /**
+     * add the student to the programme
+     * @param student to be added
+     */
     public void addStudent(Student student) {
         if (!this.students.contains(student)){
             this.students.add(student);
         }
     }
+    /**
+     * Get the students enrolled in the programme
+     * @return the students enrolled in the programme
+     */
     public ArrayList<Student> getStudentsEnrolled() {return this.students;}
+    /**
+     * Get the modules in the programme
+     * @return the modules in the programme
+     */
     public ArrayList<Modules> getModules() {return this.modules;}
+    /**
+     * add the module to the programme
+     * @param module to be added
+     */
     public void addModule(Modules module) {
         if (!this.modules.contains(module)) {
             this.modules.add(module);
@@ -77,6 +149,11 @@ public class Programme
         }
     } 
 
+    /**
+     * check if the programme exists in the csv file
+     * @param name the name of the programme to be checked
+     * @return true if the programme exists, false otherwise
+     */
     public static boolean checkIfProgrammeExists(String name) {
         return CSVFileManager.checkIfLineExistsInCSVFile(FILE, name);
     }
@@ -84,6 +161,7 @@ public class Programme
     /**
      * remove the programme from the csv file
      * @param name the name of the programme to be removed
+     * @return 0 if the programme was removed, -1 otherwise
      */
     public static int removeProgrammeFromCsv(String name){
         if (checkIfProgrammeExists(name)){
@@ -92,6 +170,11 @@ public class Programme
         return -1;
     }
 
+    /**
+     * check if the student exists in the programme
+     * @param studentId the id of the student to be checked
+     * @return true if the student exists, false otherwise
+     */
     public boolean checkIfStudentExists(int studentId) {
         for (Student student : this.students) {
             if (student.getIdNumber() == studentId) {
@@ -132,6 +215,10 @@ public class Programme
         }
     }
 
+    /**
+     * To string method for the programme
+     * @return the string representation of the programme
+     */
     @Override
     public String toString() {
         if (this.getDuration() == null || this.getLevel() == null || this.getType() == null) {

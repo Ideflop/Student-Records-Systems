@@ -11,12 +11,21 @@ public class Assignment{
     private int[] students;
     private double[] studentsMarks;
 
+    /**
+     * Constructor for objects of class Assignment
+     * @param code of the assignment
+     */
     public Assignment(String code) {
         this.code = code;
     }
 
     /**
      * Constructor for objects of class Assignment
+     * @param name of the assignment
+     * @param code of the assignment
+     * @param outOf of the assignment
+     * @param students of the assignment
+     * @param studentsMarks of the assignment
      */
     public Assignment(String name, String code, int outOf, int[] students, double[] studentsMarks) {
         this.name = name;
@@ -26,18 +35,66 @@ public class Assignment{
         this.studentsMarks = studentsMarks;
     }
 
+    /**
+     * Getter for the name of the assignment
+     * @return the name of the assignment
+     */
     public String getName() { return this.name; }
+    /**
+     * Getter for the code of the assignment
+     * @return the code of the assignment
+     */
     public String getCode() { return this.code; }
+    /**
+     * Getter for the module code of the assignment
+     * @return the module code of the assignment
+     */
     public String getModuleCode() { return this.moduleCode; }
+    /**
+     * Getter for the out of of the assignment
+     * @return the out of of the assignment
+     */
     public int getOutOf() { return this.outOf; }
+    /**
+     * Getter for the students of the assignment
+     * @return the students of the assignment
+     */
     public int[] getStudents() { return this.students; }
+    /**
+     * Getter for the students marks of the assignment
+     * @return the students marks of the assignment
+     */
     public double[] getStudentsMarks() { return this.studentsMarks; }
 
+    /**
+     * Setter for the name of the assignment
+     * @param name of the assignment
+     */
     public void setName(String name) { this.name = name; }
+    /**
+     * Setter for the code of the assignment
+     * @param code of the assignment
+     */
     public void setCode(String code) { this.code = code; }
+    /**
+     * Setter for the module code of the assignment
+     * @param moduleCode of the assignment
+     */
     public void setModuleCode(String moduleCode) { this.moduleCode = moduleCode; }
+    /**
+     * Setter for the out of of the assignment
+     * @param outOf of the assignment
+     */
     public void setOutOf(int outOf) { this.outOf = outOf; }
+    /**
+     * Setter for the students of the assignment
+     * @param students of the assignment
+     */
     public void setStudents(int[] students) { this.students = students; }
+    /**
+     * Setter for the students marks of the assignment
+     * @param studentsMarks of the assignment
+     */
     public void setStudentsMarks(double[] studentsMarks) { this.studentsMarks = studentsMarks; }
 
     /**
@@ -87,10 +144,20 @@ public class Assignment{
     }
 
 
+    /**
+     * This method is used to check if an assignment exists in a csv file
+     * @param code the code of the assignment
+     * @return the result of the operation
+     */
     public static boolean checkIfAssignmentExists(String code) {
         return CSVFileManager.checkIfLineExistsInCSVFile(FILE, code);
     }
 
+    /**
+     * This method is used to remove an assignment from a csv file
+     * @param idNumber the id number of the assignment
+     * @return the result of the operation
+     */
     public static int removeAssignmentFromCsv(String idNumber){
         if (checkIfAssignmentExists(idNumber)){
             return CSVFileManager.removeLineFromCSVFile(FILE, idNumber);
@@ -98,6 +165,11 @@ public class Assignment{
         return -1;
     }
 
+    /**
+     * This method is used to get the marks of a student from a csv file
+     * @param studentId the id of the student
+     * @return the marks of the student
+     */
     public String getStudentMark(int studentId) {
         getFromCsvFile(code);
         for (int i = 0; i < students.length; i++) {
@@ -109,6 +181,11 @@ public class Assignment{
         return null;
     }
 
+    /**
+     * This method is used to update the marks of a student in a csv file
+     * @param studentId the id of the student
+     * @param mark the mark of the student
+     */
     public void updateStudentMark(int studentId, int mark) {
         getFromCsvFile(code);
         for (int i = 0; i < students.length; i++) {
@@ -120,6 +197,11 @@ public class Assignment{
         addToCsvFile();
     }
 
+    /**
+     * This method is used to add a mark to a student in a csv file
+     * @param studentId the id of the student
+     * @param mark the mark of the student
+     */
     public void addMarkToStudent(int studentId, int mark) {
         getFromCsvFile(code);
         int[] newStudents = new int[students.length + 1];
@@ -136,6 +218,10 @@ public class Assignment{
         addToCsvFile();
     }
 
+    /**
+     * To string method
+     * @return the string representation of the assignment
+     */
     @Override
     public String toString() {
         if ( this.name == null || this.code == null || this.students == null || this.studentsMarks == null ) {

@@ -1,3 +1,6 @@
+/**
+ * Represents a person with a name, address, phone number, and email address.
+ */
 public class Person {
     private String name; //The name of the person.
     private String address;//The address of the person.
@@ -118,8 +121,10 @@ public class Person {
         this.email = email;
     }
      /**
+      * The `toString` method returns a formatted string representing the person.
      * @return A formatted string representing the person.
      */
+    @Override
     public String toString() {
         return String.format(" Name: %s%n Address: %s%n Phone: %s%n Email: %s", this.name, this.address, this.phoneNumber, this.email);
     }

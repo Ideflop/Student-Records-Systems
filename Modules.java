@@ -11,6 +11,9 @@ public class Modules {
     private int[] students;
     private int teacher;
 
+    /**
+     * Constructor for objects of class Modules
+     */
     public Modules(String code) {
         this.code = code;
     }
@@ -25,20 +28,65 @@ public class Modules {
         this.teacher = teacher;
     }
 
+    /**
+     * Getter for the name of the module
+     * @return the name of the module
+     */
     public String getName() { return this.name; }
+    /**
+     * Getter for the code of the module
+     * @return the code of the module
+     */
     public String getCode() { return this.code; }
+    /**
+     * Getter for the assignment name of the module
+     * @return the assignment name of the module
+     */
     public ArrayList<String> getAssignmentName() { 
         getFromCsvFile(this.code);
         return this.assignmentName; 
     }
+    /**
+     * Getter for the students of the module
+     * @return the students of the module
+     */
     public int[] getStudents() { return this.students; }
+    /**
+     * Getter for the teacher of the module
+     * @return the teacher of the module
+     */
     public int getTeacher() { return this.teacher; }
 
+    /**
+     * Setter for the name of the module
+     * @param name of the module
+     */
     public void setName(String name) { this.name = name; }
+    /**
+     * Setter for the code of the module
+     * @param code of the module
+     */
     public void setCode(String code) { this.code = code; }
+    /**
+     * Setter for the assignment name of the module
+     * @param assignmentName of the module
+     */
     public void setAssignmentName(ArrayList<String> assignmentName) { this.assignmentName = assignmentName; }
+    /**
+     * Setter for the students of the module
+     * @param students of the module
+     */
     public void setStudents(int[] students) { this.students = students; }
+    /**
+     * Setter for the teacher of the module
+     * @param teacher of the module
+     */
     public void setTeacher(int teacher) { this.teacher = teacher; }
+
+    /**
+     * Adds a new assignment name to the module
+     * @param assignmentName of the module
+     */
     public void addAssignmentName(String assignmentName) { this.assignmentName.add(assignmentName); }
 
     /**
@@ -128,10 +176,20 @@ public class Modules {
         return false;
     }
 
+    /**
+     * This method is used to check if a module exists
+     * @param code the code of the module
+     * @return true if the module exists, false otherwise
+     */
     public static boolean checkIfModuleExists(String code) {
         return CSVFileManager.checkIfLineExistsInCSVFile(FILE, code);
     }
 
+    /**
+     * This method is used to remove a module from the csv file
+     * @param idNumber the id of the module
+     * @return 0 if the module was removed successfully, -1 otherwise
+     */
     public static int removeModulesFromCsv(String idNumber){
         if (checkIfModuleExists(idNumber)){
             return CSVFileManager.removeLineFromCSVFile(FILE, idNumber);
@@ -139,6 +197,10 @@ public class Modules {
         return -1;
     }
 
+    /**
+     * This method is used to add an assignment to a module
+     * @param assignmentName the name of the assignment
+     */
     public void addAssignmentToModule(String assignmentName) {
         getFromCsvFile(this.code);
         if (this.assignmentName == null) {
@@ -149,6 +211,11 @@ public class Modules {
         addToCsvFile();
     }
 
+    /**
+     * This method is used to get the mark of a student in a module
+     * @param studentId the id of the student
+     * @return the mark of the student
+     */
     public double[] getStudentMark(int studentId) {
         getFromCsvFile(this.code);
         ArrayList<Integer> students = new ArrayList<>();
@@ -178,6 +245,11 @@ public class Modules {
         return marks2;
     }
 
+    /**
+     * This method is used to get the average mark of a student in a module
+     * @param studentId the id of the student
+     * @return the average mark of the student
+     */
     @Override
     public String toString() {
         if ( this.name == null || this.code == null || this.students == null || this.teacher == 0 ) {

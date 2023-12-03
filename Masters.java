@@ -1,4 +1,6 @@
-
+/**
+ * The `Masters` class extends the `Student` class and represents a masters student.
+ */
 public class Masters extends Student {
     /**
      * Constructs a `Masters` object with the specified attributes.

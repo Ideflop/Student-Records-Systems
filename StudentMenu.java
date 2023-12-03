@@ -1,5 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+/**
+ * StudentMenu class is a class that creates a menu for the student
+ */
 public class StudentMenu {
     private static Scanner scanner;
     private Student student;
@@ -22,6 +25,11 @@ public class StudentMenu {
     private static final String EXIT_STRING = " : Exit";
 
 
+    /**
+     * Constructor for objects of class StudentMenu
+     * @param student the student
+     * @param scanner the scanner
+     */
     public StudentMenu(Student student, Scanner scanner) {
         this.student = student;
         StudentMenu.scanner = scanner;

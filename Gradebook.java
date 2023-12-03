@@ -1,24 +1,48 @@
 import java.util.ArrayList;
+/**
+ * Gradebook class is a class that stores the information of a gradebook
+ */
 public class Gradebook {
     // letterGrade = {"NG", "F", "D2", "D1", "C3", "C2", "C1", "B3", "B2", "B1", "A2", "A1"};
     private double[] testscores;
 
+    /**
+     * Constructor for objects of class Gradebook
+     */
     public Gradebook() {
         testscores = new double[3];
     }
 
+    /**
+     * Constructor for objects of class Gradebook
+     * @param numTests of the gradebook
+     */
     public Gradebook(int numTests) {
         testscores = new double[numTests];
     }
 
+    /**
+     * Setter for the score of the gradebook
+     * @param i the index of the score
+     * @param value the value of the score
+     */
     public void setScore(int i, double value) {
         testscores[i] = value;
     }
 
+    /**
+     * Getter for the score of the gradebook
+     * @param i the index of the score
+     * @return the score of the gradebook
+     */
     public double getScore(int i) {
         return testscores[i];
     }
 
+    /**
+     * Getter for the total score of the gradebook
+     * @return the total score of the gradebook
+     */
     public double getTotal() {
         double result = 0;
         for (double score : testscores) {
@@ -27,7 +51,10 @@ public class Gradebook {
         return result;
     }
 
-    // Calculate average test score
+    /**
+     * Getter for the average score of the gradebook
+     * @return the average score of the gradebook
+     */
     public double calculateAvgScore() {
         double testTotal = 0;
 
@@ -38,6 +65,10 @@ public class Gradebook {
         return testTotal / testscores.length;
     }
 
+    /**
+     * Getter for the grade of the gradebook
+     * @return the grade of the gradebook
+     */
     public String getGrade() {
         double score = calculateAvgScore();
 
@@ -68,6 +99,11 @@ public class Gradebook {
         }
     }
 
+    /**
+     * Getter for the letter grades of the gradebook
+     * @param student the student
+     * @return the letter grades of the gradebook
+     */
     public String[] getLetterGrades(Student student) {
         Programme programme = new Programme(student.getProgram());
         ArrayList<Modules> modules = programme.getModules();
@@ -96,6 +132,11 @@ public class Gradebook {
         return result;
     }
 
+    /**
+     * Getter for the string representation of the gradebook
+     * @return the string representation of the gradebook
+     */
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (double score : testscores) {

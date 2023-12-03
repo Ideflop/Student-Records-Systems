@@ -2,6 +2,10 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.ArrayList;
 
+/**
+ * The AdministratorMenu class is used to display the Administrator menu
+ * and to perform the actions that the administrator chooses.
+ */
 public class AdministratorMenu {
     private Administrator administrator;
     private static Scanner scanner;
@@ -48,6 +52,11 @@ public class AdministratorMenu {
     private static final String EXIT_STRING = " : Exit to Main Menu";
 
 
+    /**
+     * The AdministratorMenu constructor is used to create an AdministratorMenu object
+     * @param administrator the administrator that is using the menu
+     * @param scanner the scanner that is used to read the user input
+     */
     public AdministratorMenu(Administrator administrator, Scanner scanner) {
         this.administrator = administrator;
         AdministratorMenu.scanner = scanner;

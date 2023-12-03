@@ -1,6 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * InputUtils class is a class to get user input
+ */
 public class InputUtils {
 
     /**

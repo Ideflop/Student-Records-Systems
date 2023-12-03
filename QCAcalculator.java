@@ -1,23 +1,41 @@
 import java.util.Scanner;
-
+/**
+ * QCAcalculator class is a class that calculates the QCA score of a student
+ */
 public class QCAcalculator {
     private int moduleNum;
     private double qcaScore;
     private double tempQca;
     private Scanner scanner;
 
+    /**
+     * Constructor for objects of class QCAcalculator
+     */
     public QCAcalculator() {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Getter for the qca score of the student
+     * @return the qca score of the student
+     */
     public double getQcaScore() {
         return qcaScore;
     }
 
+    /**
+     * Setter for the qca score of the student
+     * @param qcaScore of the student
+     */
     public void setQcaScore(double qcaScore) {
         this.qcaScore = qcaScore;
     }
 
+    /** 
+     * Calculates the QCA score of the student
+     * @param student the student
+     * @return the QCA score of the student
+     */
     public double calculateQcaScore(Student student) {
         tempQca = 0.0;
         String[] letterGrades = new Gradebook().getLetterGrades(student);

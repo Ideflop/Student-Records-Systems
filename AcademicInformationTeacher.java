@@ -1,6 +1,9 @@
 /**
- * AcademicInformationTeacher class is a subclass of AcademicInformation
- * that add and get information from a Teacher from a csv file.
+ * This class is used to create the academic information of a teacher
+ * It extends the AcademicInformation class
+ * It is used to add and get information from the teacher.csv file
+ * It is used to check if a teacher exists in the teacher.csv file
+ * It is used to get the information of a teacher from the teacher.csv file
  */
 public class AcademicInformationTeacher extends AcademicInformation {
     private static final String FILE = "teacher.csv";
@@ -22,6 +25,11 @@ public class AcademicInformationTeacher extends AcademicInformation {
         this.teacher = teacher;
     }
 
+    /**
+     * This constructor is used create the academic information of a teacher
+     * @param idNumber the id number of the teacher
+     * @param teacher the teacher
+     */
     public AcademicInformationTeacher(int idNumber, Teacher teacher) {
         super(idNumber);
         this.teacher = teacher;
@@ -59,10 +67,20 @@ public class AcademicInformationTeacher extends AcademicInformation {
         }
     }
 
+    /**
+     * This method is used to get the information of a teacher from a csv file
+     * @param idNumber the id number of the teacher
+     * @return the teacher
+     */
     public Teacher getTeacherFromAcademicInformation() {
             return new Teacher(this.getName(), this.getAddress(), this.getCollegeLevel(), this.getPhoneNumber(), this.getEmail(), this.office, this.getIdNumber(), this.modules, this.isOnExaminationBoard);
     }
 
+    /**
+     * This method is used to check if a teacher exists in a csv file
+     * @param idNumber the id number of the teacher
+     * @return true if the teacher exists, false otherwise
+     */
     public static boolean checkIfTeacherExistsInCSVFile(int idNumber) {
         return CSVFileManager.checkIfLineExistsInCSVFile(FILE, idNumber);
     }

@@ -1,7 +1,9 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.ArrayList;
-
+/**
+ * TeacherMenu class is a class that stores the information of the teacher menu
+ */
 public class TeacherMenu {
     private Teacher teacher;
 
