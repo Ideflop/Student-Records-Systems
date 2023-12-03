@@ -9,12 +9,13 @@ public class Programme
     private double passingQca;
     private ArrayList<Student> students;
     private ArrayList<Modules> modules;
+    // Need a way of seperating modules into semesters
+    // need a way to see if Student has passed or failed individual modules
 
     public Programme(String name) {
         this.name = name;
-        this.students = new ArrayList<>();
-        this.modules = new ArrayList<>();
-        getFromCsvFile(this.getName());
+        this.students = new ArrayList<Student>();
+        this.modules = new ArrayList<Modules>();
     }
 
     public Programme(String name, String duration, String level, String type, double passingQca) {
@@ -23,8 +24,8 @@ public class Programme
         this.level = level;
         this.type = type;
         this.passingQca = passingQca;
-        this.students = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.students = new ArrayList<Student>();
+        this.modules = new ArrayList<Modules>();
     }
     public void setName(String n) {this.name = n;}
     public void setDuration(String d) {this.duration = d;}
@@ -44,13 +45,13 @@ public class Programme
         }
     }
     public ArrayList<Student> getStudentsEnrolled() {return this.students;}
-    public ArrayList<Modules> getModules() {return this.modules;}
     public void addModule(Modules module) {
         if (!this.modules.contains(module)) {
             this.modules.add(module);
         }
     }
-
+    
+    public ArrayList<Modules> getModules() {return this.modules;}
     /**
      * add the programme to the csv file
      */

@@ -9,13 +9,13 @@ import java.util.ArrayList;
  */
 public class ExaminationBoard
 {
-    // what data types do I need?
+    // what data types do i need?
     private Programme programme;
     private double passingQca = 1.2; // stand in variable
     private ArrayList<Student> students;
-    public ExaminationBoard(Programme programme) {
+    public ExaminationBoard(Programme programme, double passingQca) {
         this.programme = programme;
-        this.passingQca = programme.getPassingQca();
+        this.passingQca = passingQca;
         this.students = getStudents();
     }
     public ArrayList<Student> getStudents() {return programme.getStudentsEnrolled();}
@@ -23,7 +23,11 @@ public class ExaminationBoard
     public double getQcaSem2(Student student) {return student.getQcaSem2();}
     public double getQca(Student student) {return student.getQcaYear();}
     public boolean passFail(double qcaToCheck) {
-        return qcaToCheck >= passingQca;
+        boolean pass = false;
+        if (qcaToCheck >= passingQca) {
+            pass = true;
+        }
+        return pass;
     }
     // // 1 for sem1, 2 for sem2, 3 for year
     public String checkQca(int assessmentPeriod, Student s){
@@ -44,16 +48,31 @@ public class ExaminationBoard
                 output += String.format("%f - FAIL", getQcaSem2(s));
             }
         } else if (assessmentPeriod == 3) { // Year
-            double qca = getQca(s);
-            if (passFail(qca)) {
-                output += String.format("%f - PASS", qca);
+            if (passFail(getQca(s))) {
+                output += String.format("%f - PASS", getQca(s));
             }else {
-                output += String.format("%f - FAIL", qca);
+                output += String.format("%f - FAIL", getQca(s));
             }
         }
         return output;
     }
-    
+    // Get modules, display all results and check which ones failed
+    public String checkModuleResults(Student s) {
+        String output = "";
+        StudentResults studentResults = new StudentResults(s);
+        ArrayList<Modules> mods = programme.getModules();
+        for (Modules m : mods) {
+            if (studentResults.getResult(m.getCode()) < 1.2f){ //m.passingGrade
+                // This module was failed by this student
+                // temporary return string
+                output += String.format("%s: %.2f - FAIL\n");
+            } else {
+                //this module was passed by this student
+                output += String.format("%s: %.2f - PASS\n");
+            }
+        }
+        return output;
+    }
     @Override
     public String toString(){ // display results for entire programme
         String output = String.format("%s", programme.toString());

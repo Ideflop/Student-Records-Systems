@@ -5,23 +5,21 @@ public class Department
 
     private String name;
     private int deptID;
-    private ExaminationBoard examBoard; // for each department
+    private ExaminationBoard[] examBoard; // for each dpartment
     private ArrayList<Programme> programmes;
     private ArrayList<Modules> modules;
 
-    public Department() {}
-
     public Department(int deptID) {
         this.deptID = deptID;
-        this.programmes = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.programmes = new ArrayList<Programme>();
+        this.modules = new ArrayList<Modules>();
     }
 
     public Department(String name, int ID) {
         this.name = name;
         this.deptID = ID;
-        this.programmes = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.programmes = new ArrayList<Programme>();
+        this.modules = new ArrayList<Modules>();
     }
 
     public String getName() {return this.name;}
@@ -39,7 +37,10 @@ public class Department
         }
     }
     // create exam board for all programmes
-
+    public void createExamBoard(Programme p) {
+        ExaminationBoard exams = new ExaminationBoard(p, p.getPassingQca());
+        
+    }
     /**
      * add the Department to the csv file
      */
@@ -107,10 +108,6 @@ public class Department
         } else {
             System.out.println("Default with Name" + id + " does not exist.");
         }
-    }
-
-    public double getQcaScoreForStudent(Student student) {
-        return new QCAcalculator().calculateQcaScore(student);  
     }
 
     @Override
