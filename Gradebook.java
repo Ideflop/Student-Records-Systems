@@ -52,7 +52,7 @@ public class Gradebook {
     }
 
     /**
-     * Getter for the average score of the gradebook
+     * calculate the average score of the gradebook
      * @return the average score of the gradebook
      */
     public double calculateAvgScore() {
@@ -133,8 +133,8 @@ public class Gradebook {
     }
 
     /**
-     * Getter for the string representation of the gradebook
-     * @return the string representation of the gradebook
+     * To string method for the gradebook
+     * @return the string of the gradebook
      */
     @Override
     public String toString() {

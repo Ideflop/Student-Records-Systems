@@ -41,22 +41,27 @@ public class Teacher extends Person {
 
     /**
      * The getOffice() method is used to get the office of a teacher
+     * @return the office of the teacher
      */
     public String getOffice() { return this.office; }
     /**
      * The getCollegeLevel() method is used to get the college level of a teacher
+     * @return the college level of the teacher
      */
     public String getCollegeLevel() { return this.collegeLevel; }
     /**
      * The getIdNumber() method is used to get the id number of a teacher
+     * @return the id number of the teacher
      */
     public int getIdNumber() { return this.idNumber; }
     /**
      * The getModules() method is used to get the modules of a teacher
+     * @return the modules of the teacher
      */
     public String getModules() { return this.modules; }
     /**
      * The getIsOnExaminationBoard() method is used to get the isOnExaminationBoard of a teacher
+     * @return the isOnExaminationBoard of the teacher
      */
     public boolean getIsOnExaminationBoard() { return this.isOnExaminationBoard; }
 

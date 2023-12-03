@@ -13,6 +13,7 @@ public class Modules {
 
     /**
      * Constructor for objects of class Modules
+     * @param code of the module
      */
     public Modules(String code) {
         this.code = code;
@@ -20,6 +21,10 @@ public class Modules {
 
     /**
      * Constructor for objects of class Modules
+     * @param name of the module
+     * @param code of the module
+     * @param students of the module
+     * @param teacher of the module
      */
     public Modules(String name, String code, int[] students, int teacher) {
         this.name = name;
@@ -246,9 +251,8 @@ public class Modules {
     }
 
     /**
-     * This method is used to get the average mark of a student in a module
-     * @param studentId the id of the student
-     * @return the average mark of the student
+     * To string method
+     * @return the string representation of the module
      */
     @Override
     public String toString() {

@@ -69,7 +69,6 @@ public class AcademicInformationTeacher extends AcademicInformation {
 
     /**
      * This method is used to get the information of a teacher from a csv file
-     * @param idNumber the id number of the teacher
      * @return the teacher
      */
     public Teacher getTeacherFromAcademicInformation() {
