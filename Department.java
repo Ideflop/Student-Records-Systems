@@ -1,84 +1,46 @@
 import java.util.ArrayList;
-/**
- * Department class is a class that stores the information of a department
- */
 public class Department
 {
     private static final String FILE = "department.csv";
 
     private String name;
     private int deptID;
-    private ExaminationBoard examBoard; // for each department
+    private ExaminationBoard[] examBoard; // for each dpartment
     private ArrayList<Programme> programmes;
     private ArrayList<Modules> modules;
 
-    /**
-     * Constructor for objects of class Department
-     */
-    public Department() {}
-
-    /**
-     * Constructor for objects of class Department
-     * @param deptID of the department
-     */
     public Department(int deptID) {
         this.deptID = deptID;
-        this.programmes = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.programmes = new ArrayList<Programme>();
+        this.modules = new ArrayList<Modules>();
     }
 
-    /**
-     * Constructor for objects of class Department
-     * @param name of the department
-     * @param ID of the department
-     */
     public Department(String name, int ID) {
         this.name = name;
         this.deptID = ID;
-        this.programmes = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.programmes = new ArrayList<Programme>();
+        this.modules = new ArrayList<Modules>();
     }
 
-    /**
-     * Getter for the name of the department
-     * @return the name of the department
-     */
     public String getName() {return this.name;}
-    /**
-     * Getter for the ID of the department
-     * @return the ID of the department
-     */
     public int getID() {return this.deptID;}
-    /**
-     * Setter for the name of the department
-     * @param n the name of the department
-     */
     public void setName(String n) {this.name = n;}
-    /**
-     * Setter for the ID of the department
-     * @param id the ID of the department
-     */
     public void setID(int id) {this.deptID = id;}
-
-    /**
-     * Add a programme to the department
-     * @param prog the programme to be added
-     */
     public void addProgramme(Programme prog) {
         if (!this.programmes.contains(prog)) {
             this.programmes.add(prog);
         }
     }
-    /**
-     * Add a module to the department
-     * @param module the module to be added
-     */
     public void addModule(Modules module) {
         if (!this.modules.contains(module)) {
             this.modules.add(module);
         }
     }
-
+    // create exam board for all programmes
+    public void createExamBoard(Programme p) {
+        ExaminationBoard exams = new ExaminationBoard(p, p.getPassingQca());
+        
+    }
     /**
      * add the Department to the csv file
      */
@@ -104,11 +66,6 @@ public class Department
         }
     } 
 
-    /**
-     * check if the department exists in the csv file
-     * @param id the name of the department to be checked
-     * @return true if the department exists, false otherwise
-     */
     public static boolean checkIfDepartmentExists(int id) {
         return CSVFileManager.checkIfLineExistsInCSVFile(FILE, id);
     }
@@ -116,7 +73,6 @@ public class Department
     /**
      * remove the department from the csv file
      * @param id the name of the department to be removed
-     * @return 0 if the department was removed successfully, -1 otherwise
      */
     public static int removeDepartmentFromCsv(int id){
         if (checkIfDepartmentExists(id)){
@@ -153,20 +109,9 @@ public class Department
             System.out.println("Default with Name" + id + " does not exist.");
         }
     }
-
-    /**
-     * get QCA score for a student
-     * @param student the student to get the QCA score for
-     * @return the QCA score for the student
-     */
     public double getQcaScoreForStudent(Student student) {
         return new QCAcalculator().calculateQcaScore(student);  
     }
-
-    /**
-     * To string method for the department
-     * @return the string representation of the department
-     */
     @Override
     public String toString() {
         if (this.getName() == null) {

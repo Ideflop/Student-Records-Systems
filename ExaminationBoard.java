@@ -9,59 +9,23 @@ import java.util.ArrayList;
  */
 public class ExaminationBoard
 {
+    // what data types do i need?
     private Programme programme;
     private double passingQca = 1.2; // stand in variable
     private ArrayList<Student> students;
-
-    /**
-     * Constructor for objects of class ExaminationBoard
-     * @param programme of the examination board
-     */
-    public ExaminationBoard(Programme programme) {
+    public ExaminationBoard(Programme programme, double passingQca) {
         this.programme = programme;
-        this.passingQca = programme.getPassingQca();
+        this.passingQca = passingQca;
         this.students = getStudents();
     }
-
-    /**
-     * Getter for the students of the examination board
-     * @return the students of the examination board
-     */
     public ArrayList<Student> getStudents() {return programme.getStudentsEnrolled();}
-    /**
-     * Getter for the Qca sem1 of the student
-     * @param student to get the Qca sem1
-     * @return the Qca sem1 of the student
-     */
     public double getQcaSem1(Student student) {return student.getQcaSem1();}
-    /**
-     * Getter for the Qca sem2 of the student
-     * @param student to get the Qca sem2 of
-     * @return the Qca sem2 of the student
-     */
     public double getQcaSem2(Student student) {return student.getQcaSem2();}
-    /**
-     * Getter for the Qca of the student
-     * @param student to get the Qca of
-     * @return the Qca of the student
-     */
     public double getQca(Student student) {return student.getQcaYear();}
-    
-    /**
-     * check if the student has passed or failed
-     * @param qcaToCheck the Qca to check
-     * @return true if the student has passed, false if the student has failed
-     */
     public boolean passFail(double qcaToCheck) {
         return qcaToCheck >= passingQca;
     }
-    
-    /**
-     * check the Qca of the student
-     * @param assessmentPeriod the assessment period to check 1 for sem1, 2 for sem2, 3 for year
-     * @param s the student to check the Qca of
-     * @return the Qca of the student
-     */
+    // // 1 for sem1, 2 for sem2, 3 for year
     public String checkQca(int assessmentPeriod, Student s){
         String output = "";
         if (assessmentPeriod < 0) {return "Please select Assessment Period";}
@@ -80,20 +44,31 @@ public class ExaminationBoard
                 output += String.format("%f - FAIL", getQcaSem2(s));
             }
         } else if (assessmentPeriod == 3) { // Year
-            double qca = getQca(s);
-            if (passFail(qca)) {
-                output += String.format("%f - PASS", qca);
+            if (passFail(getQca(s))) {
+                output += String.format("%f - PASS", getQca(s));
             }else {
-                output += String.format("%f - FAIL", qca);
+                output += String.format("%f - FAIL", getQca(s));
             }
         }
         return output;
     }
-    
-    /**
-     * To String method for the examination board
-     * @return the string of the examination board
-     */
+    // Get modules, display all results and check which ones failed
+    public String checkModuleResults(Student s) {
+        String output = "";
+        StudentResults studentResults = new StudentResults(s);
+        ArrayList<Modules> mods = programme.getModules();
+        for (Modules m : mods) {
+            if (studentResults.getResult(m.getCode()) < 1.2f){ //m.passingGrade
+                // This module was failed by this student
+                // temporary return string
+                output += String.format("%s: %.2f - FAIL\n");
+            } else {
+                //this module was passed by this student
+                output += String.format("%s: %.2f - PASS\n");
+            }
+        }
+        return output;
+    }
     @Override
     public String toString(){ // display results for entire programme
         String output = String.format("%s", programme.toString());
